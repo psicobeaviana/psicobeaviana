@@ -1,4 +1,5 @@
 ---
+import { whatsappLink } from '../config';
 ---
 
 <section
@@ -23,7 +24,9 @@
       </p>
       <div class="pt-4">
         <a
-          href="#contato"
+          href={whatsappLink}
+          target="_blank"
+          rel="noopener noreferrer"
           class="inline-flex items-center gap-2 font-body soft-shadow"
           style="background-color: var(--color-primary-container); color: white; padding: 0.75rem 2rem; border-radius: var(--radius-full); font-size: 0.875rem; font-weight: 600; letter-spacing: 0.05em; text-decoration: none; transition: opacity 0.2s;"
         >

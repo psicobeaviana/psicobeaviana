@@ -1,4 +1,6 @@
 ---
+import { whatsappLink } from '../config';
+
 const navLinks = [
   { href: '#home', label: 'Home' },
   { href: '#sobre', label: 'Sobre' },
@@ -40,7 +42,9 @@ const navLinks = [
       </ul>
 
       <a
-        href="#contato"
+        href={whatsappLink}
+        target="_blank"
+        rel="noopener noreferrer"
         class="font-body"
         style="background-color: var(--color-primary-container); color: var(--color-on-primary-container); padding: 0.5rem 1.5rem; border-radius: var(--radius-full); font-size: 0.875rem; font-weight: 600; letter-spacing: 0.05em; text-decoration: none; transition: opacity 0.2s;"
       >
@@ -52,7 +56,9 @@ const navLinks = [
 
 <!-- Mobile FAB WhatsApp -->
 <a
-  href="#contato"
+  href={whatsappLink}
+  target="_blank"
+  rel="noopener noreferrer"
   class="fixed bottom-8 right-8 md:hidden z-50 flex items-center gap-2 rounded-full p-4"
   style="background-color: var(--color-primary); color: var(--color-on-primary); box-shadow: 0px 10px 30px rgba(140,115,101,0.18);"
   aria-label="Agendar via WhatsApp"
