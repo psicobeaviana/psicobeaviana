@@ -39,9 +39,10 @@ const base = import.meta.env.BASE_URL;
     <!-- Cards -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       {posts.map((post) => (
-        <article
+        <a
+          href={`${base}blog/${post.slug}`}
           class="group flex flex-col rounded-3xl overflow-hidden border soft-shadow"
-          style="background-color: var(--color-surface); border-color: color-mix(in srgb, var(--color-outline-variant) 20%, transparent);"
+          style="background-color: var(--color-surface); border-color: color-mix(in srgb, var(--color-outline-variant) 20%, transparent); text-decoration: none;"
         >
           <div class="overflow-hidden rounded-t-3xl" style="height: 12rem;">
             <img
@@ -71,15 +72,14 @@ const base = import.meta.env.BASE_URL;
             >
               {post.resumo}
             </p>
-            <a
-              href={`${base}blog/${post.slug}`}
+            <span
               class="font-body mt-auto"
-              style="color: var(--color-primary); font-size: 0.875rem; font-weight: 600; text-decoration: none;"
+              style="color: var(--color-primary); font-size: 0.875rem; font-weight: 600;"
             >
               Ler mais
-            </a>
+            </span>
           </div>
-        </article>
+        </a>
       ))}
     </div>
   </div>
