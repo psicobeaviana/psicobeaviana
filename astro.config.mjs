@@ -7,7 +7,7 @@ export default defineConfig({
   // URL final do site — atualizar para o domínio customizado quando disponível
   site: 'https://sinngjpeg.github.io',
   // base corresponde ao nome do repositório no GitHub Pages
-  base: '/psicobeaviana',
+  base: '/psicobeaviana/',
   output: 'static',
   vite: {
     plugins: [tailwindcss()],
