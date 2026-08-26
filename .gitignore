@@ -1,5 +1,10 @@
 # Dependências
 node_modules/
+studio/node_modules/
+
+# Arquivos gerados/sensíveis do Sanity Studio
+studio/dist/
+studio/.sanity/
 
 # Build do Astro
 dist/
