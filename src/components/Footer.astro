@@ -1,9 +1,8 @@
 ---
-const quickLinks = [
-  { href: '/privacidade', label: 'Privacidade' },
-  { href: '/termos', label: 'Termos de Uso' },
-  { href: '/faq', label: 'FAQ' },
-];
+import { phoneDisplay, email, instagramUrl, whatsappLink } from '../config';
+
+// Ano atualizado automaticamente a cada build
+const currentYear = new Date().getFullYear();
 ---
 
 <footer
@@ -11,7 +10,7 @@ const quickLinks = [
   style="background-color: var(--color-surface-container-low); padding-block: 4rem; border-color: color-mix(in srgb, var(--color-outline-variant) 20%, transparent);"
 >
   <div
-    class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center md:text-left"
+    class="grid grid-cols-1 md:grid-cols-2 gap-6 text-center md:text-left"
     style="padding-inline: var(--spacing-margin-desktop); max-width: var(--spacing-container-max); margin-inline: auto; gap: var(--spacing-gutter);"
   >
     <!-- Marca -->
@@ -25,29 +24,6 @@ const quickLinks = [
       </p>
     </div>
 
-    <!-- Links rápidos -->
-    <div class="flex flex-col gap-4 items-center md:items-start">
-      <h4
-        class="font-body"
-        style="font-size: 0.875rem; font-weight: 600; color: var(--color-on-background);"
-      >
-        Links Rápidos
-      </h4>
-      <ul class="flex flex-col gap-2 list-none p-0 m-0">
-        {quickLinks.map((link) => (
-          <li>
-            <a
-              href={link.href}
-              class="font-body"
-              style="font-size: 1rem; color: var(--color-on-surface-variant); text-decoration: none; transition: color 0.2s;"
-            >
-              {link.label}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </div>
-
     <!-- Contato -->
     <div class="flex flex-col gap-4 items-center md:items-start">
       <h4
@@ -56,15 +32,28 @@ const quickLinks = [
       >
         Contato
       </h4>
-      <p
+
+      <a
+        href={`mailto:${email}`}
         class="font-body"
-        style="font-size: 1rem; color: var(--color-on-surface-variant);"
+        style="font-size: 1rem; color: var(--color-on-surface-variant); text-decoration: none; transition: color 0.2s;"
       >
-        contato@psicobeatrizviana.com.br
-      </p>
+        {email}
+      </a>
+
+      <a
+        href={whatsappLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="font-body"
+        style="font-size: 1rem; color: var(--color-on-surface-variant); text-decoration: none; transition: color 0.2s;"
+      >
+        {phoneDisplay}
+      </a>
+
       <div class="flex gap-4 mt-2">
         <a
-          href="https://instagram.com/psicobeatrizviana"
+          href={instagramUrl}
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Instagram"
@@ -73,7 +62,7 @@ const quickLinks = [
           <span class="material-symbols-outlined">photo_camera</span>
         </a>
         <a
-          href="mailto:contato@psicobeatrizviana.com.br"
+          href={`mailto:${email}`}
           aria-label="E-mail"
           style="color: var(--color-on-surface-variant); transition: color 0.2s;"
         >
@@ -88,6 +77,6 @@ const quickLinks = [
     class="text-center mt-12 pt-8 border-t font-body"
     style="font-size: 1rem; color: var(--color-on-surface-variant); border-color: color-mix(in srgb, var(--color-outline-variant) 20%, transparent);"
   >
-    © 2025 Psicóloga Beatriz Viana. Todos os direitos reservados.
+    © {currentYear} Psicóloga Beatriz Viana. Todos os direitos reservados.
   </div>
 </footer>

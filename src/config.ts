@@ -1,5 +1,5 @@
 // Configurações de contato centralizadas.
-// Atualize aqui o número ou a mensagem e todos os botões do site refletem a mudança.
+// Atualize aqui os dados e todo o site (botões, rodapé) reflete a mudança.
 
 const WHATSAPP_NUMBER = '5511950055301';
 const WHATSAPP_MESSAGE =
@@ -7,3 +7,12 @@ const WHATSAPP_MESSAGE =
 
 /** Link completo do WhatsApp com mensagem pré-definida. */
 export const whatsappLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
+
+/** Telefone formatado para exibição. */
+export const phoneDisplay = '(11) 95005-5301';
+
+/** E-mail de contato. */
+export const email = 'psicologabeatrizgomes@gmail.com';
+
+/** Perfil do Instagram. */
+export const instagramUrl = 'https://www.instagram.com/psicobeatrizviana/';
