@@ -1,0 +1,10 @@
+# Configuração de deploy do Netlify
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  # Faz o Astro servir o site na raiz do domínio (base = "/")
+  DEPLOY_TARGET = "netlify"
+  NODE_VERSION = "22"

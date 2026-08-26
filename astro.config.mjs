@@ -2,12 +2,15 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 
+// Alvo de deploy: 'netlify' serve na raiz do domínio; caso contrário, GitHub Pages (subpasta).
+// Definimos DEPLOY_TARGET=netlify nas variáveis de ambiente do Netlify.
+const isNetlify = process.env.DEPLOY_TARGET === 'netlify';
+
 // https://astro.build/config
 export default defineConfig({
-  // URL final do site — atualizar para o domínio customizado quando disponível
-  site: 'https://sinngjpeg.github.io',
-  // base corresponde ao nome do repositório no GitHub Pages
-  base: '/psicobeaviana/',
+  site: isNetlify ? 'https://psicobeatrizviana.com.br' : 'https://sinngjpeg.github.io',
+  // No GitHub Pages o site vive em /psicobeaviana/; no Netlify, na raiz.
+  base: isNetlify ? '/' : '/psicobeaviana/',
   output: 'static',
   vite: {
     plugins: [tailwindcss()],
