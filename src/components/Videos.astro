@@ -45,7 +45,7 @@ const reels = [
     <div
       data-carousel-track
       class="flex gap-8 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4"
-      style="scrollbar-width: none;"
+      style="scrollbar-width: none; justify-content: center;"
     >
       {reels.map((reel) => (
         <div class="snap-center shrink-0" style="flex: 0 0 auto; width: min(100%, 340px);">
@@ -136,6 +136,9 @@ const reels = [
         const maxScroll = track.scrollWidth - track.clientWidth - 1;
         // Sem overflow: sem necessidade de setas
         const hasOverflow = track.scrollWidth > track.clientWidth + 1;
+        // Centraliza quando os vídeos cabem; alinha à esquerda quando há scroll
+        // (justify-center com overflow cortaria o primeiro item)
+        track.style.justifyContent = hasOverflow ? 'flex-start' : 'center';
         prev.style.display = hasOverflow ? 'flex' : 'none';
         next.style.display = hasOverflow ? 'flex' : 'none';
         prev.disabled = track.scrollLeft <= 0;
