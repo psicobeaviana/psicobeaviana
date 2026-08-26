@@ -1,45 +1,7 @@
 ---
-// Dados mockados — serão substituídos pelo Sanity CMS na issue #7
-interface Post {
-  categoria: string;
-  titulo: string;
-  resumo: string;
-  image: string;
-  imageAlt: string;
-  slug: string;
-}
+import { posts } from '../data/posts';
 
-const posts: Post[] = [
-  {
-    categoria: 'Ansiedade',
-    titulo: 'Entendendo os gatilhos da ansiedade no dia a dia',
-    resumo:
-      'Pequenas mudanças na rotina podem ajudar a identificar e lidar com momentos de tensão antes que eles se agravem.',
-    image:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuAnb1UbjIb6EzwNP6oG9FXFVXRpgW0JFAHP5WIhoWeAehlwOYFecbIHy7gSvmsOiodmlsA6T2I0I0_YuB_CnETAqVIgftt_lECwDDgw-xJQz8V0RiXXq8WEQohZ3g8xHHNgaq-GJMtbHsuf14kEq5BOaV-pMvychlic5CnO_hIqPLysTl87KhSphidNp_DnfTAAzzxXmMFZRNUMTwHux1u0eln_f9ZIv2F6xzegXZKcv5ilUS-KHkOJ0Qg1luQksi_MCLM',
-    imageAlt: 'Pessoa escrevendo em diário, refletindo sobre sentimentos',
-    slug: 'gatilhos-ansiedade',
-  },
-  {
-    categoria: 'Autoconhecimento',
-    titulo: 'A importância de estabelecer limites saudáveis',
-    resumo:
-      'Dizer não é um ato de autocuidado fundamental para a manutenção da nossa saúde mental nas relações interpessoais.',
-    image:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuASJFiAqFfhy-1i8H5YoJ9oMq8UT2YDK8iyH6j6VY_PNhpVT5frKNYl27MKLWkgP-5E4w749Hhqm5eqqiJBv2DHY6yOFEOD6GEQNAn_zBgKa8j8MHUq6sbItSTdvf4a2kah-n3wUsCEp-gWmJzi8kIlDFehyaOzLtneBHDVmK93xJa8CNPQJrGSZOp8uzD115fnIr8wRN5ln-XHXo-VlDosi7bE-oxMUFq-01WwQrriE-l9zdzqPuqANYUDgPgjcw7_apM',
-    imageAlt: 'A importância de estabelecer limites saudáveis',
-    slug: 'limites-saudaveis',
-  },
-  {
-    categoria: 'Bem-estar',
-    titulo: 'Desmistificando a terapia: Quando buscar ajuda?',
-    resumo:
-      'Muitas vezes esperamos o sofrimento ficar insuportável para procurar um profissional, mas a prevenção é chave.',
-    image: `${import.meta.env.BASE_URL}images/456e50e5-aac6-4403-97da-57c865bcb02c.jpeg`,
-    imageAlt: 'Desmistificando a terapia',
-    slug: 'quando-buscar-ajuda',
-  },
-];
+const base = import.meta.env.BASE_URL;
 ---
 
 <section
@@ -65,7 +27,7 @@ const posts: Post[] = [
         </h2>
       </div>
       <a
-        href="/blog"
+        href={`${base}blog`}
         class="font-body flex items-center gap-1"
         style="color: var(--color-primary); font-size: 0.875rem; font-weight: 600; text-decoration: none;"
       >
@@ -110,7 +72,7 @@ const posts: Post[] = [
               {post.resumo}
             </p>
             <a
-              href={`/blog/${post.slug}`}
+              href={`${base}blog/${post.slug}`}
               class="font-body mt-auto"
               style="color: var(--color-primary); font-size: 0.875rem; font-weight: 600; text-decoration: none;"
             >

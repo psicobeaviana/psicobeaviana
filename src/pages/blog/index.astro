@@ -1,0 +1,103 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import WhatsAppButton from '../../components/WhatsAppButton.astro';
+import { posts } from '../../data/posts';
+
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout title="Artigos — Psicóloga Beatriz Viana">
+  <Navbar />
+
+  <main style="padding-top: 8rem;">
+    <section
+      style="padding-block: var(--spacing-section-gap); padding-inline: var(--spacing-margin-mobile); max-width: var(--spacing-container-max); margin-inline: auto;"
+    >
+      <!-- Cabeçalho -->
+      <div class="text-center mb-16">
+        <span
+          class="font-body uppercase tracking-wider"
+          style="font-size: 0.875rem; font-weight: 600; letter-spacing: 0.05em; color: var(--color-tertiary);"
+        >
+          Conteúdos Educativos
+        </span>
+        <h1
+          class="font-display mt-2"
+          style="font-size: clamp(2rem, 4vw, 2.75rem); font-weight: 700; line-height: 1.2; color: var(--color-primary);"
+        >
+          Todos os artigos
+        </h1>
+        <p
+          class="font-body mt-4"
+          style="font-size: 1.125rem; line-height: 1.6; color: var(--color-on-surface-variant); max-width: 36rem; margin-inline: auto;"
+        >
+          Reflexões sobre saúde mental, autoconhecimento e bem-estar para acompanhar você na sua jornada.
+        </p>
+      </div>
+
+      <!-- Grade de artigos -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {posts.map((post) => (
+          <article
+            class="group flex flex-col rounded-3xl overflow-hidden border soft-shadow"
+            style="background-color: var(--color-surface); border-color: color-mix(in srgb, var(--color-outline-variant) 20%, transparent);"
+          >
+            <div class="overflow-hidden rounded-t-3xl" style="height: 12rem;">
+              <img
+                src={post.image}
+                alt={post.imageAlt}
+                class="w-full h-full object-cover"
+                style="transition: transform 0.5s; object-position: center;"
+              />
+            </div>
+
+            <div class="flex flex-col gap-4 flex-1 p-6">
+              <span
+                class="font-body"
+                style="font-size: 0.875rem; font-weight: 600; letter-spacing: 0.05em; color: var(--color-tertiary);"
+              >
+                {post.categoria}
+              </span>
+              <h2
+                class="font-display"
+                style="font-size: 1.125rem; font-weight: 600; color: var(--color-on-background);"
+              >
+                {post.titulo}
+              </h2>
+              <p
+                class="font-body"
+                style="font-size: 1rem; line-height: 1.6; color: var(--color-on-surface-variant); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;"
+              >
+                {post.resumo}
+              </p>
+              <a
+                href={`${base}blog/${post.slug}`}
+                class="font-body mt-auto"
+                style="color: var(--color-primary); font-size: 0.875rem; font-weight: 600; text-decoration: none;"
+              >
+                Ler mais
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <!-- Voltar -->
+      <div class="text-center mt-16">
+        <a
+          href={base}
+          class="font-body inline-flex items-center gap-1"
+          style="color: var(--color-primary); font-size: 0.875rem; font-weight: 600; text-decoration: none;"
+        >
+          <span class="material-symbols-outlined" style="font-size: 1rem;">arrow_left_alt</span>
+          Voltar para a página inicial
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+  <WhatsAppButton />
+</BaseLayout>
