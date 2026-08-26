@@ -1,0 +1,78 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import WhatsAppButton from '../../components/WhatsAppButton.astro';
+import { posts } from '../../data/posts';
+
+// Gera uma página estática para cada artigo
+export function getStaticPaths() {
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout title={`${post.titulo} — Psicóloga Beatriz Viana`} description={post.resumo}>
+  <Navbar />
+
+  <main style="padding-top: 8rem;">
+    <article
+      style="padding-block: var(--spacing-section-gap); padding-inline: var(--spacing-margin-mobile); max-width: 48rem; margin-inline: auto;"
+    >
+      <!-- Cabeçalho do artigo -->
+      <a
+        href={`${base}blog`}
+        class="font-body inline-flex items-center gap-1 mb-8"
+        style="color: var(--color-primary); font-size: 0.875rem; font-weight: 600; text-decoration: none;"
+      >
+        <span class="material-symbols-outlined" style="font-size: 1rem;">arrow_left_alt</span>
+        Voltar para os artigos
+      </a>
+
+      <span
+        class="font-body uppercase tracking-wider"
+        style="font-size: 0.875rem; font-weight: 600; letter-spacing: 0.05em; color: var(--color-tertiary);"
+      >
+        {post.categoria}
+      </span>
+
+      <h1
+        class="font-display mt-3 mb-8"
+        style="font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 700; line-height: 1.2; color: var(--color-primary);"
+      >
+        {post.titulo}
+      </h1>
+
+      <!-- Imagem de capa -->
+      <img
+        src={post.image}
+        alt={post.imageAlt}
+        class="w-full object-cover rounded-3xl soft-shadow mb-10"
+        style="height: 20rem; object-position: center;"
+      />
+
+      <!-- Conteúdo -->
+      <div class="font-body space-y-6" style="font-size: 1.125rem; line-height: 1.7; color: var(--color-on-surface-variant);">
+        {(post.conteudo ?? [post.resumo]).map((paragrafo) => (
+          <p>{paragrafo}</p>
+        ))}
+      </div>
+
+      <!-- Aviso de conteúdo em construção -->
+      <div
+        class="mt-12 rounded-2xl p-6 font-body"
+        style="background-color: color-mix(in srgb, var(--color-secondary-container) 40%, transparent); font-size: 1rem; line-height: 1.6; color: var(--color-on-surface-variant);"
+      >
+        ✍️ Este artigo está em construção. Em breve o conteúdo completo será publicado por aqui.
+      </div>
+    </article>
+  </main>
+
+  <Footer />
+  <WhatsAppButton />
+</BaseLayout>
