@@ -1,6 +1,7 @@
 ---
 // Permalinks dos Reels do Instagram.
 // Para trocar ou adicionar vídeos, basta editar esta lista com a URL do reel.
+// O carrossel com setas aparece automaticamente quando há mais vídeos do que cabem na tela.
 const reels = [
   'https://www.instagram.com/reel/Dbx8tqJvcae/',
   'https://www.instagram.com/reel/DcB9-QNvwU-/',
@@ -27,27 +28,143 @@ const reels = [
     </h2>
   </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 justify-items-center">
-    {reels.map((reel) => (
-      <blockquote
-        class="instagram-media w-full"
-        data-instgrm-permalink={`${reel}?utm_source=ig_embed&utm_campaign=loading`}
-        data-instgrm-version="14"
-        style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin:1px auto; max-width:540px; min-width:326px; padding:0; width:100%;"
-      >
-        <div style="padding:16px;">
-          <a
-            href={`${reel}?utm_source=ig_embed&utm_campaign=loading`}
-            style="background:#FFFFFF; line-height:0; padding:0; text-align:center; text-decoration:none; width:100%;"
-            target="_blank"
-            rel="noopener noreferrer"
+  <!-- Carrossel -->
+  <div class="relative" data-carousel>
+    <!-- Seta esquerda -->
+    <button
+      type="button"
+      data-carousel-prev
+      aria-label="Vídeo anterior"
+      class="carousel-arrow hidden md:flex"
+      style="left: -1.25rem;"
+    >
+      <span class="material-symbols-outlined">chevron_left</span>
+    </button>
+
+    <!-- Trilho com scroll horizontal -->
+    <div
+      data-carousel-track
+      class="flex gap-8 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4"
+      style="scrollbar-width: none;"
+    >
+      {reels.map((reel) => (
+        <div class="snap-center shrink-0" style="flex: 0 0 auto; width: min(100%, 340px);">
+          <blockquote
+            class="instagram-media w-full"
+            data-instgrm-permalink={`${reel}?utm_source=ig_embed&utm_campaign=loading`}
+            data-instgrm-version="14"
+            style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin:1px auto; max-width:540px; min-width:326px; padding:0; width:100%;"
           >
-            Ver no Instagram
-          </a>
+            <div style="padding:16px;">
+              <a
+                href={`${reel}?utm_source=ig_embed&utm_campaign=loading`}
+                style="background:#FFFFFF; line-height:0; padding:0; text-align:center; text-decoration:none; width:100%;"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Ver no Instagram
+              </a>
+            </div>
+          </blockquote>
         </div>
-      </blockquote>
-    ))}
+      ))}
+    </div>
+
+    <!-- Seta direita -->
+    <button
+      type="button"
+      data-carousel-next
+      aria-label="Próximo vídeo"
+      class="carousel-arrow hidden md:flex"
+      style="right: -1.25rem;"
+    >
+      <span class="material-symbols-outlined">chevron_right</span>
+    </button>
   </div>
 </section>
 
+<style>
+  /* Esconde a scrollbar mantendo o scroll funcional */
+  [data-carousel-track]::-webkit-scrollbar {
+    display: none;
+  }
+
+  .carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: var(--radius-full);
+    background-color: var(--color-surface-container-lowest);
+    color: var(--color-primary);
+    border: 1px solid color-mix(in srgb, var(--color-outline-variant) 40%, transparent);
+    box-shadow: 0px 10px 30px rgba(140, 115, 101, 0.12);
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+  }
+
+  .carousel-arrow:hover {
+    background-color: var(--color-primary-container);
+    color: white;
+  }
+
+  /* Oculta a seta desabilitada (início/fim do trilho) */
+  .carousel-arrow[disabled] {
+    opacity: 0;
+    pointer-events: none;
+  }
+</style>
+
+<script>
+  function initCarousels() {
+    const carousels = document.querySelectorAll('[data-carousel]');
+
+    carousels.forEach((carousel) => {
+      const track = carousel.querySelector('[data-carousel-track]') as HTMLElement | null;
+      const prev = carousel.querySelector('[data-carousel-prev]') as HTMLButtonElement | null;
+      const next = carousel.querySelector('[data-carousel-next]') as HTMLButtonElement | null;
+      if (!track || !prev || !next) return;
+
+      // Distância de deslize = largura visível do trilho (~1 "página" de vídeos)
+      const scrollAmount = () => track.clientWidth * 0.9;
+
+      const updateArrows = () => {
+        const maxScroll = track.scrollWidth - track.clientWidth - 1;
+        // Sem overflow: sem necessidade de setas
+        const hasOverflow = track.scrollWidth > track.clientWidth + 1;
+        prev.style.display = hasOverflow ? 'flex' : 'none';
+        next.style.display = hasOverflow ? 'flex' : 'none';
+        prev.disabled = track.scrollLeft <= 0;
+        next.disabled = track.scrollLeft >= maxScroll;
+      };
+
+      prev.addEventListener('click', () => {
+        track.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
+      });
+
+      next.addEventListener('click', () => {
+        track.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
+      });
+
+      track.addEventListener('scroll', updateArrows, { passive: true });
+      window.addEventListener('resize', updateArrows);
+
+      // Recalcula quando os embeds do Instagram terminam de carregar (mudam a largura)
+      const observer = new ResizeObserver(updateArrows);
+      observer.observe(track);
+
+      updateArrows();
+    });
+  }
+
+  // Executa no carregamento e em navegações internas do Astro
+  initCarousels();
+  document.addEventListener('astro:page-load', initCarousels);
+</script>
+
+<!-- Embed do Instagram -->
 <script is:inline async src="https://www.instagram.com/embed.js"></script>
