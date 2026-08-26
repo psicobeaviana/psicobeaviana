@@ -1,0 +1,19 @@
+# Dependências
+node_modules/
+
+# Build do Astro
+dist/
+.astro/
+
+# Variáveis de ambiente (segredos)
+.env
+.env.*
+!.env.example
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Editores
+.vscode/
+.idea/

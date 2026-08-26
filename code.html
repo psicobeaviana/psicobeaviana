@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="pt-BR" style=""><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Psicologia Clínica - Cuidado e Escuta</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><link class="" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary": "#645d53",
+                      "background": "#fbf9f7",
+                      "surface-container-highest": "#e4e2e0",
+                      "on-primary-fixed-variant": "#613d3d",
+                      "on-secondary-fixed-variant": "#4c463c",
+                      "on-secondary-fixed": "#1f1b13",
+                      "outline": "#827473",
+                      "on-error": "#ffffff",
+                      "on-tertiary-container": "#523e32",
+                      "surface": "#fbf9f7",
+                      "primary": "#7c5454",
+                      "tertiary-container": "#c6a99a",
+                      "inverse-primary": "#edbaba",
+                      "on-tertiary-fixed": "#28180e",
+                      "primary-fixed-dim": "#edbaba",
+                      "surface-tint": "#7c5454",
+                      "on-surface-variant": "#504444",
+                      "outline-variant": "#d4c2c2",
+                      "surface-container": "#efedec",
+                      "error-container": "#ffdad6",
+                      "inverse-on-surface": "#f2f0ee",
+                      "secondary-container": "#e8ded1",
+                      "tertiary-fixed-dim": "#dfc1b0",
+                      "on-secondary-container": "#686257",
+                      "on-secondary": "#ffffff",
+                      "on-primary": "#ffffff",
+                      "error": "#ba1a1a",
+                      "on-error-container": "#93000a",
+                      "on-tertiary-fixed-variant": "#574236",
+                      "surface-bright": "#fbf9f7",
+                      "surface-variant": "#e4e2e0",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-dim": "#dbdad8",
+                      "surface-container-high": "#eae8e6",
+                      "tertiary": "#715a4c",
+                      "inverse-surface": "#30302f",
+                      "primary-container": "#d4a3a3",
+                      "on-primary-fixed": "#2f1314",
+                      "secondary-fixed": "#ebe1d4",
+                      "primary-fixed": "#ffdad9",
+                      "on-primary-container": "#5c3939",
+                      "tertiary-fixed": "#fcdccb",
+                      "secondary-fixed-dim": "#cfc5b9",
+                      "on-background": "#1b1c1b",
+                      "on-tertiary": "#ffffff",
+                      "surface-container-low": "#f5f3f1",
+                      "on-surface": "#1b1c1b"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "2xl": "1rem",
+                      "3xl": "1.5rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "container-max": "1200px",
+                      "gutter": "24px",
+                      "margin-mobile": "20px",
+                      "margin-desktop": "64px",
+                      "section-gap": "120px"
+              },
+              "fontFamily": {
+                      "display-lg": [
+                              "Playfair Display"
+                      ],
+                      "headline-lg": [
+                              "Playfair Display"
+                      ],
+                      "body-lg": [
+                              "Manrope"
+                      ],
+                      "headline-lg-mobile": [
+                              "Playfair Display"
+                      ],
+                      "label-sm": [
+                              "Manrope"
+                      ],
+                      "body-md": [
+                              "Manrope"
+                      ]
+              },
+              "fontSize": {
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "28px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .soft-shadow {
+            box-shadow: 0px 10px 30px rgba(140, 115, 101, 0.08);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<nav class="fixed w-full top-0 z-50 bg-background/80 dark:bg-background/90 backdrop-blur-md border-b border-outline-variant/30 hidden md:flex rounded-b-3xl">
+<div class="flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto h-20">
+<a class="font-display-lg text-headline-lg text-primary dark:text-primary-fixed-dim" href="#">Psicóloga <span class="italic text-3xl" style='font-family: "Dancing Script", cursive; font-style: italic; font-weight: 400;'>Beatriz Viana</span></a>
+<div class="flex items-center gap-8">
+<ul class="flex gap-6 font-body-md text-body-md">
+<li class=""><a class="text-primary font-bold border-b-2 border-primary pb-1" href="#home">Home</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors duration-300" href="#sobre">Sobre</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors duration-300" href="#servicos">Serviços</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors duration-300" href="#blog">Blog</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors duration-300" href="#contato">Contato</a></li>
+</ul>
+<a class="bg-primary-container text-on-primary-container px-6 py-2 rounded-full font-label-sm text-label-sm hover:opacity-90 transition-opacity" href="#contato">
+                    Agendar Consulta
+                </a>
+</div>
+</div>
+</nav>
+<main class="pt-24 md:pt-32">
+<!-- Hero Section -->
+<section class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto mb-section-gap relative" id="home">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter items-center min-h-[70vh]">
+<div class="order-2 md:order-1 flex flex-col gap-6 z-10">
+<h1 class="font-display-lg text-display-lg md:text-display-lg text-primary leading-tight">
+                        Uma psicóloga e neuropsicóloga te mostrando além da teoria
+                    </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-md">
+                        Um espaço seguro e acolhedor para você explorar suas emoções, compreender sua história e construir caminhos mais saudáveis para sua vida.
+                    </p>
+<div class="pt-4">
+<a class="inline-flex items-center gap-2 bg-primary-container text-white px-8 py-3 rounded-full font-label-sm text-label-sm soft-shadow hover:opacity-90 transition-all" href="#contato">
+                            Comece sua jornada hoje
+                            <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+</div>
+<div class="order-1 md:order-2 relative">
+<div class="absolute inset-0 bg-secondary-container rounded-3xl transform translate-x-4 translate-y-4 -z-10"></div>
+<img alt="Psicóloga sorrindo em ambiente acolhedor e profissional" class="w-full h-auto object-cover rounded-3xl soft-shadow" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCy1gqRyhgY5WShukvw77U_9u9tiCsMhSmSd8-Kv-euXKK-KQ6DOoitlNafsUjolU62BKsm69XEKFfhmUPGTM1mGF5ihm7q2mp8EPB46KHLaSadQblxFlYRGrZA5naAifYi_tzxHXtNQA4TUOEhzgp44-CV-4THz42sR_-ki9blf8LknYtfzA5fRiq8nRs8Ky92fv0A4JoXioanwhSe3ehIH0bb1tfhs4TqUs8K-sWXwhzgMTdhc3Hla5hm0O1KZMZj9ic"/>
+</div>
+</div>
+</section>
+<!-- Sobre Section -->
+<section class="bg-surface-container-low py-section-gap px-margin-mobile md:px-margin-desktop rounded-3xl mx-4 md:mx-8 mb-section-gap" id="sobre">
+<div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+<div class="relative">
+<img alt="Psicóloga em momento de escuta atenta e empática" class="w-full h-auto object-cover rounded-3xl soft-shadow" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKgzR_f6drFW_HBqT3U1BeVFxS9-Tt4gZkyMns9u0QeUSVOR6eOX_otlYCt7Ob2luNwoJZGv_H99pz4Aox2O2Rht82SuSS1lTSy8wwBzEqMJQ1oiMzNDz4Qk8UaHD_TJ8ETkuX3xbMjQIeuWnpeaQADH-ZcCsrck3C5n0htKh-qx52K1n-3Gw4W4Bt4NTUFRaBQUJ8TV438OV1_ETpwNzs2lYfADbIkNsb4U-Y6_PWcwqtPRRUanPA13hPf9-a396ksDU"/>
+</div>
+<div class="flex flex-col gap-6">
+<span class="font-label-sm text-label-sm text-tertiary uppercase tracking-wider">Sobre mim</span>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">
+                        Compreendendo sua essência através da escuta
+                    </h2>
+<div class="font-body-md text-body-md text-on-surface-variant space-y-4">
+<p class="">
+                            Acredito que a terapia é um encontro genuíno onde a palavra tem poder de cura. Meu trabalho é oferecer um ambiente livre de julgamentos, onde você possa se expressar livremente.
+                        </p>
+<p class="">
+                            Com formação sólida e constante atualização, busco integrar o conhecimento técnico à sensibilidade humana, adaptando o processo terapêutico às necessidades únicas de cada indivíduo que busca ajuda.
+                        </p>
+</div>
+<div class="flex flex-wrap gap-3 pt-4">
+<span class="px-4 py-1.5 border border-outline-variant rounded-full font-label-sm text-label-sm text-secondary">Empatia</span>
+<span class="px-4 py-1.5 border border-outline-variant rounded-full font-label-sm text-label-sm text-secondary">Acolhimento</span>
+<span class="px-4 py-1.5 border border-outline-variant rounded-full font-label-sm text-label-sm text-secondary">Ética</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Serviços Section -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto" id="servicos">
+<div class="text-center mb-16">
+<span class="font-label-sm text-label-sm text-tertiary uppercase tracking-wider">Especialidades</span>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mt-2">
+                    Como posso te ajudar
+                </h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+<!-- Service 1 -->
+<div class="group flex flex-col gap-6 bg-surface-container-lowest p-8 rounded-3xl border border-outline-variant/30 soft-shadow hover:-translate-y-1 transition-transform duration-300">
+<div class="h-64 rounded-2xl overflow-hidden mb-2">
+<img alt="Representação de psicoterapia com poltrona confortável em luz natural" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2FICrbTz5icY4TLYbIJn9EO1KYC8W55R-horkP5rsqiEKCxLQCPRcPINFRUhfjWQG1w4xN5TTL6nNvqR22sxUnEIzta0i35uQ2PY_h3V6XK0EcFIb990mHu-EqIHLyvCHa2h0yKJfhGni4DjEIWEsNWTQ_OLKjGJTT2sttSJ56vQ3sDpUGuOM7c9z9UA5ZZzcUn_gZmv4wujJLu0khNSDBmQdviaWIAJfVTeOcUPsvuhhjVwRwwQbowam1Y_Yla59_tA"/>
+</div>
+<div class="flex items-center gap-3 text-primary">
+<span class="material-symbols-outlined text-3xl" data-icon="psychology">psychology</span>
+<h3 class="font-headline-lg text-body-lg md:text-2xl font-semibold">Psicoterapia e Psicanálise</h3>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        Um processo profundo de autoconhecimento guiado pela escuta analítica. Foco em compreender padrões inconscientes, tratar sintomas de ansiedade, depressão e promover o bem-estar emocional contínuo.
+                    </p>
+<ul class="space-y-2 font-body-md text-body-md text-on-surface-variant">
+<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span> Sessões semanais</li>
+<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span> Online ou Presencial</li>
+</ul>
+</div>
+<!-- Service 2 -->
+<div class="group flex flex-col gap-6 bg-surface-container-lowest p-8 rounded-3xl border border-outline-variant/30 soft-shadow hover:-translate-y-1 transition-transform duration-300">
+<div class="h-64 rounded-2xl overflow-hidden mb-2">
+<img alt="Materiais de avaliação neuropsicológica em mesa organizada" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 object-top" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5iBGAwgXKc1tYukLPSiG4NATRGeabXZNuVth05g4NlS-Fnpnqg0zHpZX_0x3LQTFoySFDYAQRbgxeOR5H6HwmR6--E-duijco5L_p6GwI1zkwNHrXrikooVzDI2a9g0NJsl8qT2UJODOmT2DNFLC5qzx7g29GrbTMtNVuSXPPyQ_jyMpYncmj0fY7nGZALX92_AT6LgGp_l1F-cJMQJFlZmLVBrQzsnZyP612ohw1-E5GH6qM6DlwNmL1zTLHQHaAE2g"/>
+</div>
+<div class="flex items-center gap-3 text-primary">
+<span class="material-symbols-outlined text-3xl" data-icon="neurology">neurology</span>
+<h3 class="font-headline-lg text-body-lg md:text-2xl font-semibold">Avaliação Neuropsicológica</h3>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        Investigação detalhada das funções cognitivas (memória, atenção, linguagem) e comportamentais. Auxilia em diagnósticos diferenciais, planejamento de reabilitação e compreensão do funcionamento cerebral.
+                    </p>
+<ul class="space-y-2 font-body-md text-body-md text-on-surface-variant">
+<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span> Bateria de testes padronizados</li>
+<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span> Entrega de laudo completo</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- Vídeo Section -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto mb-section-gap" id="video">
+<div class="text-center mb-12">
+<span class="font-label-sm text-label-sm text-tertiary uppercase tracking-wider">Além da Teoria</span>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mt-2">
+                    Insights em Vídeo
+                </h2>
+</div>
+<div class="flex justify-center w-full">
+<blockquote class="instagram-media" data-instgrm-captioned="" data-instgrm-permalink="https://www.instagram.com/reel/DcZXMqWvW9G/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:16px;"> <a href="https://www.instagram.com/reel/DcZXMqWvW9G/?utm_source=ig_embed&amp;utm_campaign=loading" style=" background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank"> <div style=" display: flex; flex-direction: row; align-items: center;"> <div style="background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 40px; margin-right: 14px; width: 40px;"></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 100px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 60px;"></div></div></div><div style="padding: 19% 0;"></div> <div style="display:block; height:50px; margin:0 auto 12px; width:50px;"><svg height="50px" version="1.1" viewbox="0 0 60 60" width="50px" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink"><g fill="none" fill-rule="evenodd" stroke="none" stroke-width="1"><g fill="#000000" transform="translate(-511.000000, -20.000000)"><g><path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.057,25.479 533.004,25.448 541,25.448 C548.997,25.448 549.943,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101 M570.82,37.631 C570.674,34.438 570.167,32.258 569.425,30.349 C568.659,28.377 567.633,26.702 565.965,25.035 C564.297,23.368 562.623,22.342 560.652,21.575 C558.743,20.834 556.562,20.326 553.369,20.18 C550.169,20.033 549.148,20 541,20 C532.853,20 531.831,20.033 528.631,20.18 C525.438,20.326 523.257,20.834 521.349,21.575 C519.376,22.342 517.703,23.368 516.035,25.035 C514.368,26.702 513.342,28.377 512.574,30.349 C511.834,32.258 511.326,34.438 511.181,37.631 C511.035,40.831 511,41.851 511,50 C511,58.147 511.035,59.17 511.181,62.369 C511.326,65.562 511.834,67.743 512.574,69.651 C513.342,71.625 514.368,73.296 516.035,74.965 C517.703,76.634 519.376,77.658 521.349,78.425 C523.257,79.167 525.438,79.673 528.631,79.82 C531.831,79.965 532.853,80.001 541,80.001 C549.148,80.001 550.169,79.965 553.369,79.82 C556.562,79.673 558.743,79.167 560.652,78.425 C562.623,77.658 564.297,76.634 565.965,74.965 C567.633,73.296 568.659,71.625 569.425,69.651 C570.167,67.743 570.674,65.562 570.82,62.369 C570.966,59.17 571,58.147 571,50 C571,41.851 570.966,40.831 570.82,37.631"></path></g></g></g></svg></div><div style="padding-top: 8px;"> <div style=" color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">Ver essa foto no Instagram</div></div><div style="padding: 12.5% 0;"></div> <div style="display: flex; flex-direction: row; margin-bottom: 14px; align-items: center;"><div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(0px) translateY(7px);"></div> <div style="background-color: #F4F4F4; height: 12.5px; transform: rotate(-45deg) translateX(3px) translateY(1px); width: 12.5px; flex-grow: 0; margin-right: 14px; margin-left: 2px;"></div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(9px) translateY(-18px);"></div></div><div style="margin-left: 8px;"> <div style=" background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 20px; width: 20px;"></div> <div style=" width: 0; height: 0; border-top: 2px solid transparent; border-left: 6px solid #f4f4f4; border-bottom: 2px solid transparent; transform: translateX(16px) translateY(-4px) rotate(30deg)"></div></div><div style="margin-left: auto;"> <div style=" width: 0px; border-top: 8px solid #F4F4F4; border-right: 8px solid transparent; transform: translateY(16px);"></div> <div style=" background-color: #F4F4F4; flex-grow: 0; height: 12px; width: 16px; transform: translateY(-4px);"></div> <div style=" width: 0; height: 0; border-top: 8px solid #F4F4F4; border-left: 8px solid transparent; transform: translateY(-4px) translateX(8px);"></div></div></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center; margin-bottom: 24px;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 224px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 144px;"></div></div></a><p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;"><a href="https://www.instagram.com/reel/DcZXMqWvW9G/?utm_source=ig_embed&amp;utm_campaign=loading" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;" target="_blank">Um post compartilhado por Beatriz Viana | Psicóloga e Neuropsicóloga (@psicobeatrizviana)</a></p></div></blockquote> <script async="" src="//www.instagram.com/embed.js"></script>
+</div>
+</section>
+<!-- Blog/Materiais Section -->
+<section class="bg-secondary-container/30 py-section-gap px-margin-mobile md:px-margin-desktop rounded-3xl mx-4 md:mx-8 mb-section-gap" id="blog">
+<div class="max-w-container-max mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+<div>
+<span class="font-label-sm text-label-sm text-tertiary uppercase tracking-wider">Conteúdos Educativos</span>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mt-2">
+                            Reflexões sobre Saúde Mental
+                        </h2>
+</div>
+<a class="text-primary font-label-sm text-label-sm flex items-center gap-1 hover:underline decoration-primary underline-offset-4" href="#">
+                        Ver todos os artigos <span class="material-symbols-outlined text-sm" data-icon="arrow_right_alt">arrow_right_alt</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Artigo 1 -->
+<article class="bg-surface rounded-3xl overflow-hidden border border-outline-variant/20 soft-shadow group flex flex-col">
+<div class="h-48 overflow-hidden rounded-t-3xl">
+<img alt="Pessoa escrevendo em diário, refletindo sobre sentimentos" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnb1UbjIb6EzwNP6oG9FXFVXRpgW0JFAHP5WIhoWeAehlwOYFecbIHy7gSvmsOiodmlsA6T2I0I0_YuB_CnETAqVIgftt_lECwDDgw-xJQz8V0RiXXq8WEQohZ3g8xHHNgaq-GJMtbHsuf14kEq5BOaV-pMvychlic5CnO_hIqPLysTl87KhSphidNp_DnfTAAzzxXmMFZRNUMTwHux1u0eln_f9ZIv2F6xzegXZKcv5ilUS-KHkOJ0Qg1luQksi_MCLM"/>
+</div>
+<div class="p-6 flex flex-col gap-4 flex-1">
+<span class="font-label-sm text-label-sm text-tertiary">Ansiedade</span>
+<h3 class="font-headline-lg text-body-lg font-semibold text-on-background">Entendendo os gatilhos da ansiedade no dia a dia</h3>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">Pequenas mudanças na rotina podem ajudar a identificar e lidar com momentos de tensão antes que eles se agravem.</p>
+<a class="text-primary font-label-sm text-label-sm mt-auto" href="#">Ler mais</a>
+</div>
+</article>
+<!-- Artigo 2 -->
+<article class="bg-surface rounded-3xl overflow-hidden border border-outline-variant/20 soft-shadow group flex flex-col">
+<div class="h-48 overflow-hidden rounded-t-3xl">
+<img alt="A importância de estabelecer limites saudáveis" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASJFiAqFfhy-1i8H5YoJ9oMq8UT2YDK8iyH6j6VY_PNhpVT5frKNYl27MKLWkgP-5E4w749Hhqm5eqqiJBv2DHY6yOFEOD6GEQNAn_zBgKa8j8MHUq6sbItSTdvf4a2kah-n3wUsCEp-gWmJzi8kIlDFehyaOzLtneBHDVmK93xJa8CNPQJrGSZOp8uzD115fnIr8wRN5ln-XHXo-VlDosi7bE-oxMUFq-01WwQrriE-l9zdzqPuqANYUDgPgjcw7_apM"/>
+</div>
+<div class="p-6 flex flex-col gap-4 flex-1">
+<span class="font-label-sm text-label-sm text-tertiary">Autoconhecimento</span>
+<h3 class="font-headline-lg text-body-lg font-semibold text-on-background">A importância de estabelecer limites saudáveis</h3>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">Dizer não é um ato de autocuidado fundamental para a manutenção da nossa saúde mental nas relações interpessoais.</p>
+<a class="text-primary font-label-sm text-label-sm mt-auto" href="#">Ler mais</a>
+</div>
+</article>
+<!-- Artigo 3 -->
+<article class="bg-surface rounded-3xl overflow-hidden border border-outline-variant/20 soft-shadow group flex flex-col">
+<div class="h-48 overflow-hidden rounded-t-3xl">
+<img alt="Desmistificando a terapia" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGyA6HbvHgETX67yUCfH6fgfeRVJlvD2cu0i3OPpSRUmZViq7DaxGnGmEghUKqhEg9LiaX3UnEYXY6I8I4nxKj6RpcOd-TNq14fsN67ea6VVyrkMe_FZT7Fd3pT-t1mz3erCLKLRDJfxHQ7rsFHN31UHZ32oVBg-mjwrYGdP-amZyxf0kxjm_Yo-CbWsrgHWGBG3VKpiVFLDs9jp9_xzaKgMveXrMYT5URngC5u0cy-qEYIP9_GFodYOcM7XAl3jE_2Wo"/>
+</div>
+<div class="p-6 flex flex-col gap-4 flex-1">
+<span class="font-label-sm text-label-sm text-tertiary">Bem-estar</span>
+<h3 class="font-headline-lg text-body-lg font-semibold text-on-background">Desmistificando a terapia: Quando buscar ajuda?</h3>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">Muitas vezes esperamos o sofrimento ficar insuportável para procurar um profissional, mas a prevenção é chave.</p>
+<a class="text-primary font-label-sm text-label-sm mt-auto" href="#">Ler mais</a>
+</div>
+</article>
+</div>
+</div>
+</section>
+<!-- CTA / Contato -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop mb-section-gap" id="contato">
+<div class="max-w-3xl mx-auto bg-surface-container-low rounded-3xl p-10 md:p-16 text-center border border-outline-variant/30 soft-shadow relative overflow-hidden">
+<div class="absolute -top-12 -right-12 w-32 h-32 bg-primary-container/20 rounded-full blur-2xl"></div>
+<div class="absolute -bottom-12 -left-12 w-32 h-32 bg-secondary-container/40 rounded-full blur-2xl"></div>
+<h2 class="font-display-lg text-headline-lg-mobile md:text-display-lg text-primary mb-6 relative z-10">
+                    Dê o primeiro passo
+                </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-10 relative z-10 max-w-xl mx-auto">
+                    Agende uma conversa inicial para entendermos juntos como a psicoterapia pode auxiliar no seu momento atual.
+                </p>
+<a class="inline-flex items-center gap-3 bg-primary-container text-white px-8 py-4 rounded-full font-label-sm text-label-sm soft-shadow hover:scale-105 transition-transform duration-300 relative z-10" href="#">
+<span class="material-symbols-outlined" data-icon="chat">chat</span>
+                    Agendar via WhatsApp
+                </a>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low dark:bg-surface-container-lowest w-full py-16 border-t border-outline-variant/20 rounded-t-3xl">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter px-margin-desktop max-w-container-max mx-auto text-center md:text-left">
+<div class="flex flex-col gap-4 items-center md:items-start">
+<span class="font-display-lg text-headline-lg text-primary">Psicóloga <span class="italic text-3xl" style='font-family: "Dancing Script", cursive; font-style: italic; font-weight: 400;'>Beatriz Viana</span></span>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xs">Promovendo saúde mental através da escuta atenta e do acolhimento terapêutico.</p>
+</div>
+<div class="flex flex-col gap-4 items-center md:items-start">
+<h4 class="font-label-sm text-label-sm font-semibold text-on-background">Links Rápidos</h4>
+<ul class="flex flex-col gap-2 font-body-md text-body-md">
+<li class=""><a class="text-on-surface-variant hover:text-primary hover:underline decoration-primary transition-all" href="#">Privacidade</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary hover:underline decoration-primary transition-all" href="#">Termos de Uso</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary hover:underline decoration-primary transition-all" href="#">FAQ</a></li>
+</ul>
+</div>
+<div class="flex flex-col gap-4 items-center md:items-start">
+<h4 class="font-label-sm text-label-sm font-semibold text-on-background">Contato</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">contato@psicologiaclinica.com</p>
+<div class="flex gap-4 mt-2">
+<!-- Social placeholders -->
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined" data-icon="photo_camera">photo_camera</span></a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined" data-icon="mail">mail</span></a>
+</div>
+</div>
+</div>
+<div class="text-center mt-12 pt-8 border-t border-outline-variant/20 font-body-md text-body-md text-on-surface-variant">© 2024 Psicóloga Beatriz Viana. Todos os direitos reservados.</div>
+</footer>
+<!-- BottomNavBar (Mobile FAB) -->
+<a class="fixed bottom-8 right-8 rounded-full w-auto h-auto p-4 bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container shadow-md hover:shadow-lg flex items-center gap-2 hover:scale-105 hover:bg-on-primary-fixed-variant transition-transform z-[100] md:hidden" href="#">
+<span class="material-symbols-outlined" data-icon="chat" data-weight="fill" style="font-variation-settings: 'FILL' 1;">chat</span>
+<span class="font-label-sm text-label-sm sr-only">WhatsApp</span>
+</a>
+</body></html>

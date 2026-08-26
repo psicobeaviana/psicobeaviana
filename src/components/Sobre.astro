@@ -1,0 +1,60 @@
+---
+const chips = ['Empatia', 'Acolhimento', 'Ética'];
+---
+
+<section
+  id="sobre"
+  class="rounded-3xl mx-4 md:mx-8"
+  style="background-color: var(--color-surface-container-low); padding-block: var(--spacing-section-gap); padding-inline: var(--spacing-margin-mobile); margin-bottom: var(--spacing-section-gap);"
+>
+  <div
+    class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center"
+    style="max-width: var(--spacing-container-max); margin-inline: auto;"
+  >
+    <!-- Imagem -->
+    <div class="relative">
+      <img
+        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKgzR_f6drFW_HBqT3U1BeVFxS9-Tt4gZkyMns9u0QeUSVOR6eOX_otlYCt7Ob2luNwoJZGv_H99pz4Aox2O2Rht82SuSS1lTSy8wwBzEqMJQ1oiMzNDz4Qk8UaHD_TJ8ETkuX3xbMjQIeuWnpeaQADH-ZcCsrck3C5n0htKh-qx52K1n-3Gw4W4Bt4NTUFRaBQUJ8TV438OV1_ETpwNzs2lYfADbIkNsb4U-Y6_PWcwqtPRRUanPA13hPf9-a396ksDU"
+        alt="Psicóloga Beatriz Viana em momento de escuta atenta e empática"
+        class="w-full h-auto object-cover rounded-3xl soft-shadow"
+      />
+    </div>
+
+    <!-- Texto -->
+    <div class="flex flex-col gap-6">
+      <span
+        class="font-body uppercase tracking-wider"
+        style="font-size: 0.875rem; font-weight: 600; letter-spacing: 0.05em; color: var(--color-tertiary);"
+      >
+        Sobre mim
+      </span>
+
+      <h2
+        class="font-display"
+        style="font-size: clamp(1.75rem, 3vw, 2rem); font-weight: 600; line-height: 1.2; color: var(--color-primary);"
+      >
+        Compreendendo sua essência através da escuta
+      </h2>
+
+      <div class="font-body space-y-4" style="font-size: 1rem; line-height: 1.6; color: var(--color-on-surface-variant);">
+        <p>
+          Acredito que a terapia é um encontro genuíno onde a palavra tem poder de cura. Meu trabalho é oferecer um ambiente livre de julgamentos, onde você possa se expressar livremente.
+        </p>
+        <p>
+          Com formação sólida e constante atualização, busco integrar o conhecimento técnico à sensibilidade humana, adaptando o processo terapêutico às necessidades únicas de cada indivíduo que busca ajuda.
+        </p>
+      </div>
+
+      <div class="flex flex-wrap gap-3 pt-4">
+        {chips.map((chip) => (
+          <span
+            class="font-body"
+            style="padding: 0.375rem 1rem; border: 1px solid var(--color-outline-variant); border-radius: var(--radius-full); font-size: 0.875rem; font-weight: 600; color: var(--color-secondary);"
+          >
+            {chip}
+          </span>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,89 @@
+---
+interface Servico {
+  icon: string;
+  title: string;
+  description: string;
+  items: string[];
+  image: string;
+  imageAlt: string;
+}
+
+const servicos: Servico[] = [
+  {
+    icon: 'psychology',
+    title: 'Psicoterapia e Psicanálise',
+    description:
+      'Um processo profundo de autoconhecimento guiado pela escuta analítica. Foco em compreender padrões inconscientes, tratar sintomas de ansiedade, depressão e promover o bem-estar emocional contínuo.',
+    items: ['Sessões semanais', 'Online ou Presencial'],
+    image:
+      'https://lh3.googleusercontent.com/aida-public/AB6AXuB2FICrbTz5icY4TLYbIJn9EO1KYC8W55R-horkP5rsqiEKCxLQCPRcPINFRUhfjWQG1w4xN5TTL6nNvqR22sxUnEIzta0i35uQ2PY_h3V6XK0EcFIb990mHu-EqIHLyvCHa2h0yKJfhGni4DjEIWEsNWTQ_OLKjGJTT2sttSJ56vQ3sDpUGuOM7c9z9UA5ZZzcUn_gZmv4wujJLu0khNSDBmQdviaWIAJfVTeOcUPsvuhhjVwRwwQbowam1Y_Yla59_tA',
+    imageAlt: 'Representação de psicoterapia com poltrona confortável em luz natural',
+  },
+  {
+    icon: 'neurology',
+    title: 'Avaliação Neuropsicológica',
+    description:
+      'Investigação detalhada das funções cognitivas (memória, atenção, linguagem) e comportamentais. Auxilia em diagnósticos diferenciais, planejamento de reabilitação e compreensão do funcionamento cerebral.',
+    items: ['Bateria de testes padronizados', 'Entrega de laudo completo'],
+    image:
+      'https://lh3.googleusercontent.com/aida-public/AB6AXuB5iBGAwgXKc1tYukLPSiG4NATRGeabXZNuVth05g4NlS-Fnpnqg0zHpZX_0x3LQTFoySFDYAQRbgxeOR5H6HwmR6--E-duijco5L_p6GwI1zkwNHrXrikooVzDI2a9g0NJsl8qT2UJODOmT2DNFLC5qzx7g29GrbTMtNVuSXPPyQ_jyMpYncmj0fY7nGZALX92_AT6LgGp_l1F-cJMQJFlZmLVBrQzsnZyP612ohw1-E5GH6qM6DlwNmL1zTLHQHaAE2g',
+    imageAlt: 'Materiais de avaliação neuropsicológica em mesa organizada',
+  },
+];
+---
+
+<section
+  id="servicos"
+  style="padding-block: var(--spacing-section-gap); padding-inline: var(--spacing-margin-mobile); max-width: var(--spacing-container-max); margin-inline: auto;"
+>
+  <div class="text-center mb-16">
+    <span
+      class="font-body uppercase tracking-wider"
+      style="font-size: 0.875rem; font-weight: 600; letter-spacing: 0.05em; color: var(--color-tertiary);"
+    >
+      Especialidades
+    </span>
+    <h2
+      class="font-display mt-2"
+      style="font-size: clamp(1.75rem, 3vw, 2rem); font-weight: 600; line-height: 1.2; color: var(--color-primary);"
+    >
+      Como posso te ajudar
+    </h2>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+    {servicos.map((servico) => (
+      <article
+        class="group flex flex-col gap-6 rounded-3xl border soft-shadow"
+        style="background-color: var(--color-surface-container-lowest); padding: 2rem; border-color: color-mix(in srgb, var(--color-outline-variant) 30%, transparent); transition: transform 0.3s;"
+      >
+        <div class="h-64 rounded-2xl overflow-hidden">
+          <img
+            src={servico.image}
+            alt={servico.imageAlt}
+            class="w-full h-full object-cover"
+            style="transition: transform 0.5s;"
+          />
+        </div>
+
+        <div class="flex items-center gap-3" style="color: var(--color-primary);">
+          <span class="material-symbols-outlined" style="font-size: 1.875rem;">{servico.icon}</span>
+          <h3 class="font-display" style="font-size: 1.25rem; font-weight: 600;">{servico.title}</h3>
+        </div>
+
+        <p class="font-body" style="font-size: 1rem; line-height: 1.6; color: var(--color-on-surface-variant);">
+          {servico.description}
+        </p>
+
+        <ul class="space-y-2 font-body" style="font-size: 1rem; line-height: 1.6; color: var(--color-on-surface-variant); list-style: none; padding: 0; margin: 0;">
+          {servico.items.map((item) => (
+            <li class="flex items-center gap-2">
+              <span class="rounded-full" style="width: 6px; height: 6px; background-color: var(--color-primary-container); flex-shrink: 0;"></span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </article>
+    ))}
+  </div>
+</section>

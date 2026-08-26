@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import Sobre from '../components/Sobre.astro';
+import Servicos from '../components/Servicos.astro';
+import Videos from '../components/Videos.astro';
+import Blog from '../components/Blog.astro';
+import Contato from '../components/Contato.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout>
+  <Navbar />
+  <main style="padding-top: 6rem;">
+    <Hero />
+    <Sobre />
+    <Servicos />
+    <Videos />
+    <Blog />
+    <Contato />
+  </main>
+  <Footer />
+</BaseLayout>

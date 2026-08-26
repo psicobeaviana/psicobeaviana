@@ -1,0 +1,125 @@
+---
+// Dados mockados — serão substituídos pelo Sanity CMS na issue #7
+interface Post {
+  categoria: string;
+  titulo: string;
+  resumo: string;
+  image: string;
+  imageAlt: string;
+  slug: string;
+}
+
+const posts: Post[] = [
+  {
+    categoria: 'Ansiedade',
+    titulo: 'Entendendo os gatilhos da ansiedade no dia a dia',
+    resumo:
+      'Pequenas mudanças na rotina podem ajudar a identificar e lidar com momentos de tensão antes que eles se agravem.',
+    image:
+      'https://lh3.googleusercontent.com/aida-public/AB6AXuAnb1UbjIb6EzwNP6oG9FXFVXRpgW0JFAHP5WIhoWeAehlwOYFecbIHy7gSvmsOiodmlsA6T2I0I0_YuB_CnETAqVIgftt_lECwDDgw-xJQz8V0RiXXq8WEQohZ3g8xHHNgaq-GJMtbHsuf14kEq5BOaV-pMvychlic5CnO_hIqPLysTl87KhSphidNp_DnfTAAzzxXmMFZRNUMTwHux1u0eln_f9ZIv2F6xzegXZKcv5ilUS-KHkOJ0Qg1luQksi_MCLM',
+    imageAlt: 'Pessoa escrevendo em diário, refletindo sobre sentimentos',
+    slug: 'gatilhos-ansiedade',
+  },
+  {
+    categoria: 'Autoconhecimento',
+    titulo: 'A importância de estabelecer limites saudáveis',
+    resumo:
+      'Dizer não é um ato de autocuidado fundamental para a manutenção da nossa saúde mental nas relações interpessoais.',
+    image:
+      'https://lh3.googleusercontent.com/aida-public/AB6AXuASJFiAqFfhy-1i8H5YoJ9oMq8UT2YDK8iyH6j6VY_PNhpVT5frKNYl27MKLWkgP-5E4w749Hhqm5eqqiJBv2DHY6yOFEOD6GEQNAn_zBgKa8j8MHUq6sbItSTdvf4a2kah-n3wUsCEp-gWmJzi8kIlDFehyaOzLtneBHDVmK93xJa8CNPQJrGSZOp8uzD115fnIr8wRN5ln-XHXo-VlDosi7bE-oxMUFq-01WwQrriE-l9zdzqPuqANYUDgPgjcw7_apM',
+    imageAlt: 'A importância de estabelecer limites saudáveis',
+    slug: 'limites-saudaveis',
+  },
+  {
+    categoria: 'Bem-estar',
+    titulo: 'Desmistificando a terapia: Quando buscar ajuda?',
+    resumo:
+      'Muitas vezes esperamos o sofrimento ficar insuportável para procurar um profissional, mas a prevenção é chave.',
+    image:
+      'https://lh3.googleusercontent.com/aida-public/AB6AXuAGyA6HbvHgETX67yUCfH6fgfeRVJlvD2cu0i3OPpSRUmZViq7DaxGnGmEghUKqhEg9LiaX3UnEYXY6I8I4nxKj6RpcOd-TNq14fsN67ea6VVyrkMe_FZT7Fd3pT-t1mz3erCLKLRDJfxHQ7rsFHN31UHZ32oVBg-mjwrYGdP-amZyxf0kxjm_Yo-CbWsrgHWGBG3VKpiVFLDs9jp9_xzaKgMveXrMUGS5ln-XHXo-VlDosi7bE-oxMUFq-01WwQrriE-l9zdzqPuqANYUDgPgjcw7_apM',
+    imageAlt: 'Desmistificando a terapia',
+    slug: 'quando-buscar-ajuda',
+  },
+];
+---
+
+<section
+  id="blog"
+  class="rounded-3xl mx-4 md:mx-8"
+  style="background-color: color-mix(in srgb, var(--color-secondary-container) 30%, transparent); padding-block: var(--spacing-section-gap); padding-inline: var(--spacing-margin-mobile); margin-bottom: var(--spacing-section-gap);"
+>
+  <div style="max-width: var(--spacing-container-max); margin-inline: auto;">
+    <!-- Cabeçalho -->
+    <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+      <div>
+        <span
+          class="font-body uppercase tracking-wider"
+          style="font-size: 0.875rem; font-weight: 600; letter-spacing: 0.05em; color: var(--color-tertiary);"
+        >
+          Conteúdos Educativos
+        </span>
+        <h2
+          class="font-display mt-2"
+          style="font-size: clamp(1.75rem, 3vw, 2rem); font-weight: 600; line-height: 1.2; color: var(--color-primary);"
+        >
+          Reflexões sobre Saúde Mental
+        </h2>
+      </div>
+      <a
+        href="/blog"
+        class="font-body flex items-center gap-1"
+        style="color: var(--color-primary); font-size: 0.875rem; font-weight: 600; text-decoration: none;"
+      >
+        Ver todos os artigos
+        <span class="material-symbols-outlined" style="font-size: 1rem;">arrow_right_alt</span>
+      </a>
+    </div>
+
+    <!-- Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {posts.map((post) => (
+        <article
+          class="group flex flex-col rounded-3xl overflow-hidden border soft-shadow"
+          style="background-color: var(--color-surface); border-color: color-mix(in srgb, var(--color-outline-variant) 20%, transparent);"
+        >
+          <div class="overflow-hidden rounded-t-3xl" style="height: 12rem;">
+            <img
+              src={post.image}
+              alt={post.imageAlt}
+              class="w-full h-full object-cover"
+              style="transition: transform 0.5s;"
+            />
+          </div>
+
+          <div class="flex flex-col gap-4 flex-1 p-6">
+            <span
+              class="font-body"
+              style="font-size: 0.875rem; font-weight: 600; letter-spacing: 0.05em; color: var(--color-tertiary);"
+            >
+              {post.categoria}
+            </span>
+            <h3
+              class="font-display"
+              style="font-size: 1.125rem; font-weight: 600; color: var(--color-on-background);"
+            >
+              {post.titulo}
+            </h3>
+            <p
+              class="font-body"
+              style="font-size: 1rem; line-height: 1.6; color: var(--color-on-surface-variant); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;"
+            >
+              {post.resumo}
+            </p>
+            <a
+              href={`/blog/${post.slug}`}
+              class="font-body mt-auto"
+              style="color: var(--color-primary); font-size: 0.875rem; font-weight: 600; text-decoration: none;"
+            >
+              Ler mais
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
