@@ -6,6 +6,8 @@ interface Servico {
   items: string[];
   image: string;
   imageAlt: string;
+  // Ajuste do foco da imagem no recorte do card (ex.: 'center 60%' foca mais embaixo)
+  imagePosition?: string;
 }
 
 const servicos: Servico[] = [
@@ -18,6 +20,7 @@ const servicos: Servico[] = [
     image:
       'https://lh3.googleusercontent.com/aida-public/AB6AXuB2FICrbTz5icY4TLYbIJn9EO1KYC8W55R-horkP5rsqiEKCxLQCPRcPINFRUhfjWQG1w4xN5TTL6nNvqR22sxUnEIzta0i35uQ2PY_h3V6XK0EcFIb990mHu-EqIHLyvCHa2h0yKJfhGni4DjEIWEsNWTQ_OLKjGJTT2sttSJ56vQ3sDpUGuOM7c9z9UA5ZZzcUn_gZmv4wujJLu0khNSDBmQdviaWIAJfVTeOcUPsvuhhjVwRwwQbowam1Y_Yla59_tA',
     imageAlt: 'Representação de psicoterapia com poltrona confortável em luz natural',
+    imagePosition: 'center 60%',
   },
   {
     icon: 'neurology',
@@ -28,6 +31,7 @@ const servicos: Servico[] = [
     image:
       'https://lh3.googleusercontent.com/aida-public/AB6AXuB5iBGAwgXKc1tYukLPSiG4NATRGeabXZNuVth05g4NlS-Fnpnqg0zHpZX_0x3LQTFoySFDYAQRbgxeOR5H6HwmR6--E-duijco5L_p6GwI1zkwNHrXrikooVzDI2a9g0NJsl8qT2UJODOmT2DNFLC5qzx7g29GrbTMtNVuSXPPyQ_jyMpYncmj0fY7nGZALX92_AT6LgGp_l1F-cJMQJFlZmLVBrQzsnZyP612ohw1-E5GH6qM6DlwNmL1zTLHQHaAE2g',
     imageAlt: 'Materiais de avaliação neuropsicológica em mesa organizada',
+    imagePosition: 'center 20%',
   },
 ];
 ---
@@ -62,7 +66,7 @@ const servicos: Servico[] = [
             src={servico.image}
             alt={servico.imageAlt}
             class="w-full h-full object-cover"
-            style="transition: transform 0.5s; object-position: center 20%;"
+            style={`transition: transform 0.5s; object-position: ${servico.imagePosition ?? 'center 20%'};`}
           />
         </div>
 
