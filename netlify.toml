@@ -8,3 +8,12 @@
   # Faz o Astro servir o site na raiz do domínio (base = "/")
   DEPLOY_TARGET = "netlify"
   NODE_VERSION = "22"
+
+# Headers de segurança
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
