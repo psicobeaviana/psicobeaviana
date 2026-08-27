@@ -14,6 +14,9 @@ export default defineConfig({
   base: isNetlify ? '/' : '/psicobeaviana/',
   output: 'static',
   integrations: [sitemap()],
+  image: {
+    domains: ['lh3.googleusercontent.com'],
+  },
   vite: {
     plugins: [tailwindcss()],
   },

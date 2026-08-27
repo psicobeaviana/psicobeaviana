@@ -1,4 +1,8 @@
 ---
+import { getImage } from 'astro:assets';
+import bateriaTestes from '/public/images/bateria-de-testes.jpeg';
+import psicoterapiaCardImg from '/public/images/psicoterapia-card.jpeg';
+
 interface Servico {
   icon: string;
   title: string;
@@ -6,11 +10,24 @@ interface Servico {
   items: string[];
   image: string;
   imageAlt: string;
-  // Ajuste do foco da imagem no recorte do card (ex.: 'center 60%' foca mais embaixo)
   imagePosition?: string;
 }
 
-const base = import.meta.env.BASE_URL;
+const psicoterapiaImg = await getImage({
+  src: psicoterapiaCardImg,
+  width: 540,
+  height: 360,
+  format: 'webp',
+  quality: 80,
+});
+
+const neuropsicologiaImg = await getImage({
+  src: bateriaTestes,
+  width: 540,
+  height: 360,
+  format: 'webp',
+  quality: 80,
+});
 
 const servicos: Servico[] = [
   {
@@ -19,8 +36,7 @@ const servicos: Servico[] = [
     description:
       'Um processo profundo de autoconhecimento guiado pela escuta analítica. Foco em compreender padrões inconscientes, tratar sintomas de ansiedade, depressão e promover o bem-estar emocional contínuo.',
     items: ['Sessões semanais', 'Online ou Presencial'],
-    image:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuB2FICrbTz5icY4TLYbIJn9EO1KYC8W55R-horkP5rsqiEKCxLQCPRcPINFRUhfjWQG1w4xN5TTL6nNvqR22sxUnEIzta0i35uQ2PY_h3V6XK0EcFIb990mHu-EqIHLyvCHa2h0yKJfhGni4DjEIWEsNWTQ_OLKjGJTT2sttSJ56vQ3sDpUGuOM7c9z9UA5ZZzcUn_gZmv4wujJLu0khNSDBmQdviaWIAJfVTeOcUPsvuhhjVwRwwQbowam1Y_Yla59_tA',
+    image: psicoterapiaImg.src,
     imageAlt: 'Representação de psicoterapia com poltrona confortável em luz natural',
     imagePosition: 'center 60%',
   },
@@ -30,7 +46,7 @@ const servicos: Servico[] = [
     description:
       'Investigação detalhada das funções cognitivas (memória, atenção, linguagem) e comportamentais. Auxilia em diagnósticos diferenciais, planejamento de reabilitação e compreensão do funcionamento cerebral.',
     items: ['Bateria de testes padronizados', 'Entrega de laudo completo'],
-    image: `${base}images/bateria-de-testes.jpeg`,
+    image: neuropsicologiaImg.src,
     imageAlt: 'Bateria de testes de avaliação neuropsicológica',
     imagePosition: 'center 20%',
   },

@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import heroImg from '/public/images/hero-beatriz.jpeg';
 import { whatsappLink } from '../config';
 ---
 
@@ -42,9 +44,13 @@ import { whatsappLink } from '../config';
         class="absolute inset-0 rounded-3xl -z-10"
         style="background-color: var(--color-secondary-container); transform: translate(1rem, 1rem);"
       ></div>
-      <img
-        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCy1gqRyhgY5WShukvw77U_9u9tiCsMhSmSd8-Kv-euXKK-KQ6DOoitlNafsUjolU62BKsm69XEKFfhmUPGTM1mGF5ihm7q2mp8EPB46KHLaSadQblxFlYRGrZA5naAifYi_tzxHXtNQA4TUOEhzgp44-CV-4THz42sR_-ki9blf8LknYtfzA5fRiq8nRs8Ky92fv0A4JoXioanwhSe3ehIH0bb1tfhs4TqUs8K-sWXwhzgMTdhc3Hla5hm0O1KZMZj9ic"
+      <Image
+        src={heroImg}
         alt="Psicóloga Beatriz Viana sorrindo em ambiente acolhedor e profissional"
+        width={600}
+        height={750}
+        format="webp"
+        quality={80}
         class="w-full h-auto object-cover rounded-3xl soft-shadow"
       />
     </div>
