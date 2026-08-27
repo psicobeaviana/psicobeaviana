@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
+import sitemap from '@astrojs/sitemap';
 
 // Alvo de deploy: 'netlify' serve na raiz do domínio; caso contrário, GitHub Pages (subpasta).
 // Definimos DEPLOY_TARGET=netlify nas variáveis de ambiente do Netlify.
@@ -12,6 +13,7 @@ export default defineConfig({
   // No GitHub Pages o site vive em /psicobeaviana/; no Netlify, na raiz.
   base: isNetlify ? '/' : '/psicobeaviana/',
   output: 'static',
+  integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()],
   },
