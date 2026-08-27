@@ -2,7 +2,7 @@
 
 Site institucional da psicóloga e neuropsicóloga Beatriz Viana. Apresenta seus serviços, conteúdos educativos (blog), vídeos do Instagram e canal de contato via WhatsApp.
 
-**Site no ar:** https://fanciful-dragon-089ea7.netlify.app
+**Site no ar:** https://psicobeaviana.netlify.app
 
 ---
 
