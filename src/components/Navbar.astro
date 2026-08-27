@@ -1,11 +1,21 @@
 ---
 import { whatsappLink } from '../config';
+import { getPosts } from '../lib/sanity';
+
+// Só mostra o link do blog se houver posts reais no Sanity
+let showBlog = false;
+try {
+  const posts = await getPosts(1);
+  showBlog = posts.length > 0;
+} catch {
+  // Sanity indisponível — esconde o link
+}
 
 const navLinks = [
   { href: '#home', label: 'Home' },
   { href: '#sobre', label: 'Sobre' },
   { href: '#servicos', label: 'Serviços' },
-  { href: '#blog', label: 'Blog' },
+  ...(showBlog ? [{ href: '#blog', label: 'Blog' }] : []),
   { href: '#contato', label: 'Contato' },
 ];
 ---
