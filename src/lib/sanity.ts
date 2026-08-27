@@ -3,7 +3,7 @@ import type { PortableTextBlock } from '@portabletext/to-html';
 
 // Client público (sem token) — lê apenas dados publicados.
 export const sanityClient = createClient({
-  projectId: 'dae3x0fy',
+  projectId: '2d5ej2fb',
   dataset: 'production',
   apiVersion: '2024-01-01',
   useCdn: true,

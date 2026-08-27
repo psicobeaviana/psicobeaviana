@@ -13,7 +13,7 @@ Quando a Beatriz publicar/atualizar um post, vídeo ou evento no Sanity Studio, 
 
 ## Passo 2 — Criar Webhook no Sanity
 
-1. Acesse o painel do Sanity: https://www.sanity.io/manage/project/dae3x0fy
+1. Acesse o painel do Sanity: https://www.sanity.io/manage/project/2d5ej2fb
 2. Vá em **API → Webhooks**
 3. Clique em **Create webhook**
 4. Configure:
@@ -30,6 +30,7 @@ Quando a Beatriz publicar/atualizar um post, vídeo ou evento no Sanity Studio, 
 ## Resultado
 
 Após essa configuração, sempre que a Beatriz:
+
 - Publicar um novo artigo
 - Editar um artigo existente
 - Adicionar/remover um vídeo

@@ -14,7 +14,7 @@ export default defineConfig({
   title: 'Psicóloga Beatriz Viana',
 
   // Substituir 'SEU_PROJECT_ID' pelo ID gerado ao criar o projeto no sanity.io
-  projectId: 'dae3x0fy',
+  projectId: '2d5ej2fb',
   dataset: 'production',
 
   plugins: [structureTool(), visionTool()],

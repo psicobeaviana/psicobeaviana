@@ -115,7 +115,7 @@ Para rebuild automático quando conteúdo for publicado no Sanity, consulte o ar
 
 ### Via Sanity Studio (recomendado)
 
-Acesse o painel em https://www.sanity.io/manage/project/dae3x0fy para publicar:
+Acesse o painel em https://www.sanity.io/manage/project/2d5ej2fb para publicar:
 
 - **Artigos do blog** — Aparecem automaticamente no site após rebuild
 - **Vídeos** — URLs de reels do Instagram
