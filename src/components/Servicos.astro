@@ -10,6 +10,8 @@ interface Servico {
   imagePosition?: string;
 }
 
+const base = import.meta.env.BASE_URL;
+
 const servicos: Servico[] = [
   {
     icon: 'psychology',
@@ -28,7 +30,7 @@ const servicos: Servico[] = [
     description:
       'Investigação detalhada das funções cognitivas (memória, atenção, linguagem) e comportamentais. Auxilia em diagnósticos diferenciais, planejamento de reabilitação e compreensão do funcionamento cerebral.',
     items: ['Bateria de testes padronizados', 'Entrega de laudo completo'],
-    image: '/images/bateria-de-testes.jpeg',
+    image: `${base}images/bateria-de-testes.jpeg`,
     imageAlt: 'Bateria de testes de avaliação neuropsicológica',
     imagePosition: 'center 20%',
   },
