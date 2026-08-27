@@ -3,74 +3,33 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import WhatsAppButton from '../../components/WhatsAppButton.astro';
-import { getPosts, getPostBySlug, getAllPostSlugs } from '../../lib/sanity';
+import { getPostBySlug, getAllPostSlugs } from '../../lib/sanity';
 import { toHTML } from '@portabletext/to-html';
-import { posts as localPosts } from '../../data/posts';
 
-// Gera uma página estática para cada artigo
+// Gera uma página estática para cada artigo do Sanity
 export async function getStaticPaths() {
-  // Tenta buscar slugs do Sanity
-  let paths: { params: { slug: string }; props: { source: 'sanity' | 'local' } }[] = [];
-
+  let slugs: string[] = [];
   try {
-    const slugs = await getAllPostSlugs();
-    if (slugs.length > 0) {
-      paths = slugs.map((slug) => ({
-        params: { slug },
-        props: { source: 'sanity' as const },
-      }));
-    }
+    slugs = await getAllPostSlugs();
   } catch {
-    // fallback
+    // Sanity indisponível — nenhuma página gerada
   }
 
-  // Sempre inclui os posts locais (merge sem duplicatas)
-  const sanitySlugSet = new Set(paths.map((p) => p.params.slug));
-  const localPaths = localPosts
-    .filter((p) => !sanitySlugSet.has(p.slug))
-    .map((p) => ({
-      params: { slug: p.slug },
-      props: { source: 'local' as const },
-    }));
-
-  return [...paths, ...localPaths];
+  return slugs.map((slug) => ({
+    params: { slug },
+  }));
 }
 
 const { slug } = Astro.params;
-const { source } = Astro.props;
 const base = import.meta.env.BASE_URL;
 
-// Busca os dados conforme a fonte
-let titulo = '';
-let resumo = '';
-let categoria = '';
-let image = '';
-let imageAlt = '';
-let contentHtml = '';
-let isPlaceholder = false;
-
-if (source === 'sanity') {
-  const post = await getPostBySlug(slug!);
-  if (post) {
-    titulo = post.titulo;
-    resumo = post.resumo;
-    categoria = post.categoria;
-    image = post.imagemCapa ?? '';
-    imageAlt = post.imagemCapaAlt ?? post.titulo;
-    contentHtml = post.conteudo ? toHTML(post.conteudo) : '';
-  }
-} else {
-  const post = localPosts.find((p) => p.slug === slug);
-  if (post) {
-    titulo = post.titulo;
-    resumo = post.resumo;
-    categoria = post.categoria;
-    image = post.image;
-    imageAlt = post.imageAlt;
-    contentHtml = (post.conteudo ?? [post.resumo]).map((p) => `<p>${p}</p>`).join('');
-    isPlaceholder = true;
-  }
-}
+const post = await getPostBySlug(slug!);
+const titulo = post?.titulo ?? '';
+const resumo = post?.resumo ?? '';
+const categoria = post?.categoria ?? '';
+const image = post?.imagemCapa ?? '';
+const imageAlt = post?.imagemCapaAlt ?? titulo;
+const contentHtml = post?.conteudo ? toHTML(post.conteudo) : '';
 ---
 
 <BaseLayout title={`${titulo} | Psicóloga Beatriz Viana`} description={resumo}>
@@ -120,16 +79,6 @@ if (source === 'sanity') {
         style="font-size: 1.125rem; line-height: 1.7; color: var(--color-on-surface-variant);"
         set:html={contentHtml}
       />
-
-      <!-- Aviso de conteúdo em construção (apenas para posts locais placeholder) -->
-      {isPlaceholder && (
-        <div
-          class="mt-12 rounded-2xl p-6 font-body"
-          style="background-color: color-mix(in srgb, var(--color-secondary-container) 40%, transparent); font-size: 1rem; line-height: 1.6; color: var(--color-on-surface-variant);"
-        >
-          ✍️ Este artigo está em construção. Em breve o conteúdo completo será publicado por aqui.
-        </div>
-      )}
     </article>
   </main>
 
