@@ -3,28 +3,84 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import WhatsAppButton from '../../components/WhatsAppButton.astro';
-import { posts } from '../../data/posts';
+import { getPosts, getPostBySlug, getAllPostSlugs } from '../../lib/sanity';
+import { toHTML } from '@portabletext/to-html';
+import { posts as localPosts } from '../../data/posts';
 
 // Gera uma página estática para cada artigo
-export function getStaticPaths() {
-  return posts.map((post) => ({
-    params: { slug: post.slug },
-    props: { post },
-  }));
+export async function getStaticPaths() {
+  // Tenta buscar slugs do Sanity
+  let paths: { params: { slug: string }; props: { source: 'sanity' | 'local' } }[] = [];
+
+  try {
+    const slugs = await getAllPostSlugs();
+    if (slugs.length > 0) {
+      paths = slugs.map((slug) => ({
+        params: { slug },
+        props: { source: 'sanity' as const },
+      }));
+    }
+  } catch {
+    // fallback
+  }
+
+  // Sempre inclui os posts locais (merge sem duplicatas)
+  const sanitySlugSet = new Set(paths.map((p) => p.params.slug));
+  const localPaths = localPosts
+    .filter((p) => !sanitySlugSet.has(p.slug))
+    .map((p) => ({
+      params: { slug: p.slug },
+      props: { source: 'local' as const },
+    }));
+
+  return [...paths, ...localPaths];
 }
 
-const { post } = Astro.props;
+const { slug } = Astro.params;
+const { source } = Astro.props;
 const base = import.meta.env.BASE_URL;
+
+// Busca os dados conforme a fonte
+let titulo = '';
+let resumo = '';
+let categoria = '';
+let image = '';
+let imageAlt = '';
+let contentHtml = '';
+let isPlaceholder = false;
+
+if (source === 'sanity') {
+  const post = await getPostBySlug(slug!);
+  if (post) {
+    titulo = post.titulo;
+    resumo = post.resumo;
+    categoria = post.categoria;
+    image = post.imagemCapa ?? '';
+    imageAlt = post.imagemCapaAlt ?? post.titulo;
+    contentHtml = post.conteudo ? toHTML(post.conteudo) : '';
+  }
+} else {
+  const post = localPosts.find((p) => p.slug === slug);
+  if (post) {
+    titulo = post.titulo;
+    resumo = post.resumo;
+    categoria = post.categoria;
+    image = post.image;
+    imageAlt = post.imageAlt;
+    contentHtml = (post.conteudo ?? [post.resumo]).map((p) => `<p>${p}</p>`).join('');
+    isPlaceholder = true;
+  }
+}
 ---
 
-<BaseLayout title={`${post.titulo} | Psicóloga Beatriz Viana`} description={post.resumo}>
+<BaseLayout title={`${titulo} | Psicóloga Beatriz Viana`} description={resumo}>
   <Navbar />
 
   <main style="padding-top: 8rem;">
     <article
       style="padding-block: var(--spacing-section-gap); padding-inline: var(--spacing-margin-mobile); max-width: 48rem; margin-inline: auto;"
     >
-      <!-- Cabeçalho do artigo -->
+      <!-- Voltar -->
       <a
         href={`${base}blog`}
         class="font-body inline-flex items-center gap-1 mb-8"
@@ -38,41 +94,97 @@ const base = import.meta.env.BASE_URL;
         class="font-body uppercase tracking-wider"
         style="font-size: 0.875rem; font-weight: 600; letter-spacing: 0.05em; color: var(--color-tertiary);"
       >
-        {post.categoria}
+        {categoria}
       </span>
 
       <h1
         class="font-display mt-3 mb-8"
         style="font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 700; line-height: 1.2; color: var(--color-primary);"
       >
-        {post.titulo}
+        {titulo}
       </h1>
 
       <!-- Imagem de capa -->
-      <img
-        src={post.image}
-        alt={post.imageAlt}
-        class="w-full object-cover rounded-3xl soft-shadow mb-10"
-        style="height: 20rem; object-position: center;"
-      />
+      {image && (
+        <img
+          src={image}
+          alt={imageAlt}
+          class="w-full object-cover rounded-3xl soft-shadow mb-10"
+          style="height: 20rem; object-position: center;"
+        />
+      )}
 
       <!-- Conteúdo -->
-      <div class="font-body space-y-6" style="font-size: 1.125rem; line-height: 1.7; color: var(--color-on-surface-variant);">
-        {(post.conteudo ?? [post.resumo]).map((paragrafo) => (
-          <p>{paragrafo}</p>
-        ))}
-      </div>
-
-      <!-- Aviso de conteúdo em construção -->
       <div
-        class="mt-12 rounded-2xl p-6 font-body"
-        style="background-color: color-mix(in srgb, var(--color-secondary-container) 40%, transparent); font-size: 1rem; line-height: 1.6; color: var(--color-on-surface-variant);"
-      >
-        ✍️ Este artigo está em construção. Em breve o conteúdo completo será publicado por aqui.
-      </div>
+        class="font-body prose-content space-y-6"
+        style="font-size: 1.125rem; line-height: 1.7; color: var(--color-on-surface-variant);"
+        set:html={contentHtml}
+      />
+
+      <!-- Aviso de conteúdo em construção (apenas para posts locais placeholder) -->
+      {isPlaceholder && (
+        <div
+          class="mt-12 rounded-2xl p-6 font-body"
+          style="background-color: color-mix(in srgb, var(--color-secondary-container) 40%, transparent); font-size: 1rem; line-height: 1.6; color: var(--color-on-surface-variant);"
+        >
+          ✍️ Este artigo está em construção. Em breve o conteúdo completo será publicado por aqui.
+        </div>
+      )}
     </article>
   </main>
 
   <Footer />
   <WhatsAppButton />
 </BaseLayout>
+
+<style is:global>
+  /* Estilização do Portable Text renderizado */
+  .prose-content h2 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+  .prose-content h3 {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-on-surface);
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .prose-content p {
+    margin-bottom: 1rem;
+  }
+  .prose-content ul,
+  .prose-content ol {
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .prose-content li {
+    margin-bottom: 0.5rem;
+  }
+  .prose-content strong {
+    font-weight: 600;
+    color: var(--color-on-surface);
+  }
+  .prose-content a {
+    color: var(--color-primary);
+    text-decoration: underline;
+  }
+  .prose-content blockquote {
+    border-left: 3px solid var(--color-primary-container);
+    padding-left: 1rem;
+    margin-left: 0;
+    font-style: italic;
+    color: var(--color-on-surface-variant);
+  }
+  .prose-content img {
+    border-radius: 1rem;
+    width: 100%;
+    height: auto;
+    margin-block: 1.5rem;
+  }
+</style>

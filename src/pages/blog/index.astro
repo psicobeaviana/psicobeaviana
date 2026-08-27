@@ -3,9 +3,40 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import WhatsAppButton from '../../components/WhatsAppButton.astro';
-import { posts } from '../../data/posts';
+import { getPosts } from '../../lib/sanity';
+import { posts as localPosts } from '../../data/posts';
 
 const base = import.meta.env.BASE_URL;
+
+// Tenta buscar do Sanity; fallback para dados locais.
+let displayPosts: { slug: string; image: string; imageAlt: string; categoria: string; titulo: string; resumo: string }[] = [];
+
+try {
+  const sanityPosts = await getPosts();
+  if (sanityPosts.length > 0) {
+    displayPosts = sanityPosts.map((p) => ({
+      slug: p.slug,
+      image: p.imagemCapa ?? '',
+      imageAlt: p.imagemCapaAlt ?? p.titulo,
+      categoria: p.categoria,
+      titulo: p.titulo,
+      resumo: p.resumo,
+    }));
+  }
+} catch {
+  // fallback
+}
+
+if (displayPosts.length === 0) {
+  displayPosts = localPosts.map((p) => ({
+    slug: p.slug,
+    image: p.image,
+    imageAlt: p.imageAlt,
+    categoria: p.categoria,
+    titulo: p.titulo,
+    resumo: p.resumo,
+  }));
+}
 ---
 
 <BaseLayout title="Artigos | Psicóloga Beatriz Viana">
@@ -39,7 +70,7 @@ const base = import.meta.env.BASE_URL;
 
       <!-- Grade de artigos -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {posts.map((post) => (
+        {displayPosts.map((post) => (
           <a
             href={`${base}blog/${post.slug}`}
             class="group flex flex-col rounded-3xl overflow-hidden border soft-shadow"

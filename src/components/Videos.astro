@@ -1,12 +1,28 @@
 ---
-// Permalinks dos Reels do Instagram.
-// Para trocar ou adicionar vídeos, basta editar esta lista com a URL do reel.
-// O carrossel com setas aparece automaticamente quando há mais vídeos do que cabem na tela.
-const reels = [
+import { getVideos } from '../lib/sanity';
+
+// Fallback hardcoded caso o Sanity esteja vazio ou indisponível.
+const fallbackReels = [
   'https://www.instagram.com/reel/Dbx8tqJvcae/',
   'https://www.instagram.com/reel/DcB9-QNvwU-/',
   'https://www.instagram.com/reel/DcZXMqWvW9G/',
 ];
+
+// Tenta buscar vídeos do Sanity; fallback para lista local.
+let reels: string[] = [];
+
+try {
+  const sanityVideos = await getVideos();
+  if (sanityVideos.length > 0) {
+    reels = sanityVideos.map((v) => v.url);
+  }
+} catch {
+  // fallback
+}
+
+if (reels.length === 0) {
+  reels = fallbackReels;
+}
 ---
 
 <section
