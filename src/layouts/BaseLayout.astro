@@ -64,6 +64,29 @@ const ogImage = new URL(image, Astro.site);
     style="background-color: var(--color-background); color: var(--color-on-background);"
     class="font-body antialiased"
   >
+    <!-- Skip to content (acessibilidade: navegação por teclado) -->
+    <a href="#main-content" class="skip-link">Pular para o conteúdo</a>
     <slot />
   </body>
 </html>
+
+<style is:global>
+  .skip-link {
+    position: absolute;
+    top: -100%;
+    left: 1rem;
+    z-index: 9999;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--color-primary);
+    color: var(--color-on-primary);
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 600;
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    transition: top 0.2s;
+  }
+  .skip-link:focus {
+    top: 1rem;
+  }
+</style>

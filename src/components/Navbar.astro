@@ -22,6 +22,7 @@ const navLinks = [
 
 <!-- Navbar fixa — desktop usa flex, mobile mostra hamburger -->
 <nav
+  aria-label="Navegação principal"
   class="fixed w-full top-0 z-50 backdrop-blur-md border-b"
   style="background-color: color-mix(in srgb, var(--color-background) 80%, transparent); border-color: color-mix(in srgb, var(--color-outline-variant) 30%, transparent);"
 >
@@ -182,6 +183,19 @@ const navLinks = [
     color: var(--color-primary);
   }
 
+  .nav-link.active {
+    color: var(--color-primary);
+    font-weight: 700;
+    border-bottom: 2px solid var(--color-primary);
+    padding-bottom: 4px;
+  }
+
+  .mobile-nav-link.active {
+    background-color: var(--color-surface-container);
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+
   @media (min-width: 768px) {
     nav > div:first-child {
       padding-inline: var(--spacing-margin-desktop);
@@ -209,4 +223,39 @@ const navLinks = [
       menu.setAttribute('aria-hidden', 'true');
     });
   });
+
+  // Scroll Spy — destaca o link da seção visível
+  function initScrollSpy() {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
+
+    if (sections.length === 0 || navLinks.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute('id');
+            navLinks.forEach((link) => {
+              const href = link.getAttribute('href');
+              if (href === `#${id}`) {
+                link.classList.add('active');
+              } else {
+                link.classList.remove('active');
+              }
+            });
+          }
+        });
+      },
+      {
+        rootMargin: '-20% 0px -60% 0px',
+        threshold: 0,
+      }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+  }
+
+  initScrollSpy();
+  document.addEventListener('astro:page-load', initScrollSpy);
 </script>
