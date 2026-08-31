@@ -17,6 +17,9 @@ export const email = 'psicologabeatrizgomes@gmail.com';
 /** Perfil do Instagram. */
 export const instagramUrl = 'https://www.instagram.com/psicobeatrizviana/';
 
+/** Registro no Conselho Regional de Psicologia (obrigatório em material de divulgação, CFP). */
+export const crp = 'CRP 06/177412';
+
 /**
  * ID de Medição do Google Analytics (formato "G-XXXXXXXXXX").
  * Deixe vazio para manter o Analytics desligado — o site funciona
