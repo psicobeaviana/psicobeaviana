@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://fanciful-dragon-089ea7.netlify.app/sitemap-index.xml
+Sitemap: https://psicobeaviana.netlify.app/sitemap-index.xml
