@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
-import { phoneDisplay, email, instagramUrl, gaMeasurementId } from '../config';
+import CookieConsent from '../components/CookieConsent.astro';
+import { phoneDisplay, email, instagramUrl } from '../config';
 
 interface Props {
   title?: string;
@@ -85,19 +86,6 @@ const jsonLd = {
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
       rel="stylesheet"
     />
-
-    <!-- Google Analytics — só carrega se o ID estiver preenchido em src/config.ts -->
-    {gaMeasurementId && (
-      <>
-        <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}></script>
-        <script define:vars={{ gaMeasurementId }}>
-          window.dataLayer = window.dataLayer || [];
-          function gtag() { dataLayer.push(arguments); }
-          gtag('js', new Date());
-          gtag('config', gaMeasurementId);
-        </script>
-      </>
-    )}
   </head>
   <body
     style="background-color: var(--color-background); color: var(--color-on-background);"
@@ -106,6 +94,7 @@ const jsonLd = {
     <!-- Skip to content (acessibilidade: navegação por teclado) -->
     <a href="#main-content" class="skip-link">Pular para o conteúdo</a>
     <slot />
+    <CookieConsent />
   </body>
 </html>
 
