@@ -10,7 +10,7 @@ try {
   const sanityPosts = await getPosts(3);
   displayPosts = sanityPosts.map((p) => ({
     slug: p.slug,
-    image: p.imagemCapa ?? '',
+    image: p.imagemCapa ?? '/images/og-default.jpg',
     imageAlt: p.imagemCapaAlt ?? p.titulo,
     categoria: p.categoria,
     titulo: p.titulo,
