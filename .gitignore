@@ -22,3 +22,6 @@ Thumbs.db
 # Editores
 .vscode/
 .idea/
+
+# Rascunhos internos (não fazem parte do site, têm campos de senha/acesso)
+email-*.md
