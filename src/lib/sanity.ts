@@ -60,6 +60,49 @@ export async function getPosts(limit?: number): Promise<SanityPost[]> {
   return sanityClient.fetch<SanityPost[]>(query);
 }
 
+/** Formato já pronto para os cards de post (home e listagem do blog). */
+export interface PostCard {
+  slug: string;
+  image: string;
+  imageAlt: string;
+  categoria: string;
+  titulo: string;
+  resumo: string;
+}
+
+const DEFAULT_COVER_IMAGE = '/images/og-default.jpg';
+
+/**
+ * Busca posts e já devolve no formato usado pelos cards, com imagem de
+ * fallback aplicada. Evita repetir esse mapeamento em cada página que
+ * lista posts (home e /blog).
+ */
+export async function getPostCards(limit?: number): Promise<PostCard[]> {
+  const posts = await getPosts(limit);
+  return posts.map((p) => ({
+    slug: p.slug,
+    image: p.imagemCapa ?? DEFAULT_COVER_IMAGE,
+    imageAlt: p.imagemCapaAlt ?? p.titulo,
+    categoria: p.categoria,
+    titulo: p.titulo,
+    resumo: p.resumo,
+  }));
+}
+
+/**
+ * Indica se existe ao menos um post publicado — usado para decidir se o
+ * link "Blog" aparece na navegação. Nunca lança erro: se o Sanity estiver
+ * indisponível, retorna false (nav esconde o link).
+ */
+export async function hasBlogPosts(): Promise<boolean> {
+  try {
+    const posts = await getPosts(1);
+    return posts.length > 0;
+  } catch {
+    return false;
+  }
+}
+
 /** Busca um post específico pelo slug. */
 export async function getPostBySlug(slug: string): Promise<SanityPost | null> {
   const query = `*[_type == "post" && slug.current == $slug][0] { ${POSTS_FIELDS} }`;

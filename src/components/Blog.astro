@@ -1,21 +1,13 @@
 ---
-import { getPosts } from '../lib/sanity';
+import { getPostCards, type PostCard } from '../lib/sanity';
 
 const base = import.meta.env.BASE_URL;
 
 // Busca posts do Sanity. Se vazio ou erro, displayPosts fica vazio (seção não renderiza).
-let displayPosts: { slug: string; image: string; imageAlt: string; categoria: string; titulo: string; resumo: string }[] = [];
+let displayPosts: PostCard[] = [];
 
 try {
-  const sanityPosts = await getPosts(3);
-  displayPosts = sanityPosts.map((p) => ({
-    slug: p.slug,
-    image: p.imagemCapa ?? '/images/og-default.jpg',
-    imageAlt: p.imagemCapaAlt ?? p.titulo,
-    categoria: p.categoria,
-    titulo: p.titulo,
-    resumo: p.resumo,
-  }));
+  displayPosts = await getPostCards(3);
 } catch {
   // Sanity indisponível — blog fica oculto
 }

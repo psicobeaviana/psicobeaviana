@@ -4,12 +4,14 @@ import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import WhatsAppButton from '../components/WhatsAppButton.astro';
 import { whatsappLink } from '../config';
+import { hasBlogPosts } from '../lib/sanity';
 
 const base = import.meta.env.BASE_URL;
+const showBlog = await hasBlogPosts();
 ---
 
 <BaseLayout title="Página não encontrada | Psicóloga Beatriz Viana">
-  <Navbar />
+  <Navbar showBlog={showBlog} />
 
   <main id="main-content" style="padding-top: 8rem;">
     <section

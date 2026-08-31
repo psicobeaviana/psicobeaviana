@@ -3,7 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import WhatsAppButton from '../../components/WhatsAppButton.astro';
-import { getPostBySlug, getAllPostSlugs } from '../../lib/sanity';
+import { getPostBySlug, getAllPostSlugs, hasBlogPosts } from '../../lib/sanity';
 import { toHTML } from '@portabletext/to-html';
 
 // Gera uma página estática para cada artigo do Sanity
@@ -30,10 +30,11 @@ const categoria = post?.categoria ?? '';
 const image = post?.imagemCapa ?? '';
 const imageAlt = post?.imagemCapaAlt ?? titulo;
 const contentHtml = post?.conteudo ? toHTML(post.conteudo) : '';
+const showBlog = await hasBlogPosts();
 ---
 
 <BaseLayout title={`${titulo} | Psicóloga Beatriz Viana`} description={resumo}>
-  <Navbar />
+  <Navbar showBlog={showBlog} />
 
   <main id="main-content" style="padding-top: 8rem;">
     <article

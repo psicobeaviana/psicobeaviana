@@ -2,7 +2,7 @@
 
 Site institucional da psicóloga e neuropsicóloga Beatriz Viana. Apresenta seus serviços, conteúdos educativos (blog), vídeos do Instagram e canal de contato via WhatsApp.
 
-**Site no ar:** https://psicobeaviana.netlify.app
+**Site no ar:** https://psicobeaviana.netlify.app (domínio próprio `psicobeatrizviana.com.br` em propagação)
 
 ---
 
@@ -24,9 +24,11 @@ Site institucional da psicóloga e neuropsicóloga Beatriz Viana. Apresenta seus
 - Menu mobile com hamburger animado
 - Scroll spy na navbar (destaca a seção ativa)
 - Otimização de imagens automática (WebP via Astro Image)
-- SEO: Open Graph, Twitter Card, sitemap, robots.txt
-- Integração com Sanity CMS (blog e vídeos) com fallback para dados locais
-- Seção Blog oculta automaticamente até existirem posts publicados no Sanity
+- SEO: Open Graph, Twitter Card, sitemap, robots.txt, dados estruturados (Schema.org)
+- Integração com Sanity CMS (blog e vídeos) — seções somem automaticamente se o Sanity estiver vazio ou indisponível
+- Página 404 personalizada
+- Google Analytics opcional (desligado até um ID ser configurado) com banner de consentimento de cookies (LGPD)
+- Headers de segurança (CSP, HSTS, X-Frame-Options, etc.)
 - Botão flutuante do WhatsApp
 - Acessibilidade: skip-to-content, ARIA landmarks
 
@@ -34,37 +36,38 @@ Site institucional da psicóloga e neuropsicóloga Beatriz Viana. Apresenta seus
 
 ## Estrutura do projeto
 
-```
+```text
 psicobeaviana/
 ├── public/
 │   ├── images/                    # Fotos usadas no site
 │   ├── robots.txt
-│   └── favicon.svg
+│   ├── favicon.svg / favicon.ico
+│   └── apple-touch-icon.png
 ├── src/
 │   ├── components/                # Componentes de cada seção
-│   │   ├── Navbar.astro
+│   │   ├── Navbar.astro           # Recebe showBlog como prop (não consulta o Sanity sozinho)
 │   │   ├── Hero.astro
 │   │   ├── Sobre.astro
 │   │   ├── Servicos.astro
 │   │   ├── Videos.astro           # Carrossel de reels do Instagram
-│   │   ├── Blog.astro
+│   │   ├── Blog.astro             # Seção de posts na home
 │   │   ├── Contato.astro
 │   │   ├── Footer.astro
-│   │   └── WhatsAppButton.astro
-│   ├── data/
-│   │   └── posts.ts               # Dados locais do blog (fallback)
+│   │   ├── WhatsAppButton.astro
+│   │   └── CookieConsent.astro    # Banner LGPD — só existe se o Analytics estiver ativo
 │   ├── layouts/
-│   │   └── BaseLayout.astro       # Layout base (fontes, meta tags, SEO)
+│   │   └── BaseLayout.astro       # Layout base (fontes, meta tags, SEO, Schema.org)
 │   ├── lib/
-│   │   └── sanity.ts              # Client e queries do Sanity CMS
+│   │   └── sanity.ts              # Client, queries e helpers (getPostCards, hasBlogPosts)
 │   ├── pages/
 │   │   ├── index.astro            # Página inicial
+│   │   ├── 404.astro              # Página de erro personalizada
 │   │   └── blog/
 │   │       ├── index.astro        # Lista de artigos
 │   │       └── [slug].astro       # Artigo individual (Portable Text)
 │   ├── styles/
 │   │   └── global.css             # Design system (cores, fontes, espaçamentos)
-│   └── config.ts                  # Dados de contato centralizados
+│   └── config.ts                  # Dados de contato + gaMeasurementId, centralizados
 ├── studio/                        # Sanity Studio (painel de conteúdo)
 │   ├── schemaTypes/
 │   │   ├── post.ts                # Schema de artigos do blog
@@ -74,7 +77,7 @@ psicobeaviana/
 ├── DESIGN.md                      # Especificação do design system
 ├── SANITY_WEBHOOK.md              # Guia para configurar rebuild automático
 ├── astro.config.mjs
-├── netlify.toml
+├── netlify.toml                   # Deploy + headers de segurança (CSP, HSTS, etc.)
 └── package.json
 ```
 
@@ -124,9 +127,11 @@ Acesse o painel em https://www.sanity.io/manage/project/2d5ej2fb para publicar:
 ### Via código (alternativa)
 
 - **Dados de contato** (WhatsApp, e-mail, telefone, Instagram): `src/config.ts`
-- **Artigos de fallback**: `src/data/posts.ts`
+- **ID do Google Analytics**: `gaMeasurementId` em `src/config.ts` — vazio desliga o Analytics e o banner de cookies
 - **Vídeos de fallback**: lista no topo de `src/components/Videos.astro`
 - **Cores, fontes e espaçamentos**: `src/styles/global.css`
+
+> O blog não tem mais fallback local — se o Sanity estiver vazio ou indisponível, a seção/link "Blog" simplesmente não aparece (ver `hasBlogPosts()` em `src/lib/sanity.ts`).
 
 ---
 
@@ -135,11 +140,15 @@ Acesse o painel em https://www.sanity.io/manage/project/2d5ej2fb para publicar:
 - [x] Astro + Tailwind + design system
 - [x] Componentes: Hero, Sobre, Serviços, Vídeos, Blog, Contato, Footer
 - [x] Menu mobile (hamburger)
-- [x] SEO (Open Graph, sitemap, robots.txt)
+- [x] SEO (Open Graph, sitemap, robots.txt, Schema.org)
 - [x] Integração Sanity CMS (blog + vídeos)
 - [x] Otimização de imagens (WebP)
 - [x] Acessibilidade (skip-to-content, landmarks, scroll spy)
 - [x] Deploy no Netlify
+- [x] Página 404 personalizada
+- [x] Headers de segurança (CSP, HSTS)
+- [x] Google Analytics + banner de consentimento de cookies (pronto, aguardando ID)
 - [ ] Configurar webhook Sanity → Netlify (ver `SANITY_WEBHOOK.md`)
 - [ ] Seção de Eventos no site (schema já existe no Sanity)
-- [ ] Domínio personalizado
+- [ ] Domínio personalizado (`psicobeatrizviana.com.br` — DNS em propagação)
+- [ ] CRP da Beatriz no rodapé (aguardando o número)
