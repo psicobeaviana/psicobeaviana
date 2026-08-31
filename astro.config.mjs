@@ -9,7 +9,7 @@ const isNetlify = process.env.DEPLOY_TARGET === 'netlify';
 
 // https://astro.build/config
 export default defineConfig({
-  site: isNetlify ? 'https://psicobeaviana.netlify.app' : 'https://sinngjpeg.github.io',
+  site: isNetlify ? 'https://psicobeatrizviana.com.br' : 'https://sinngjpeg.github.io',
   // No GitHub Pages o site vive em /psicobeaviana/; no Netlify, na raiz.
   base: isNetlify ? '/' : '/psicobeaviana/',
   output: 'static',

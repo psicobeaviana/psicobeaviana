@@ -2,7 +2,7 @@
 
 Site institucional da psicóloga e neuropsicóloga Beatriz Viana. Apresenta seus serviços, conteúdos educativos (blog), vídeos do Instagram e canal de contato via WhatsApp.
 
-**Site no ar:** https://psicobeaviana.netlify.app (domínio próprio `psicobeatrizviana.com.br` em propagação)
+**Site no ar:** https://psicobeatrizviana.com.br
 
 ---
 
@@ -148,7 +148,7 @@ Acesse o painel em https://www.sanity.io/manage/project/2d5ej2fb para publicar:
 - [x] Página 404 personalizada
 - [x] Headers de segurança (CSP, HSTS)
 - [x] Google Analytics + banner de consentimento de cookies (pronto, aguardando ID)
+- [x] Domínio personalizado (`psicobeatrizviana.com.br`)
+- [x] CRP da Beatriz no rodapé
 - [ ] Configurar webhook Sanity → Netlify (ver `SANITY_WEBHOOK.md`)
 - [ ] Seção de Eventos no site (schema já existe no Sanity)
-- [ ] Domínio personalizado (`psicobeatrizviana.com.br` — DNS em propagação)
-- [ ] CRP da Beatriz no rodapé (aguardando o número)

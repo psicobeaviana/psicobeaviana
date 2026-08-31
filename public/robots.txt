@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://psicobeaviana.netlify.app/sitemap-index.xml
+Sitemap: https://psicobeatrizviana.com.br/sitemap-index.xml
