@@ -24,3 +24,11 @@
     # o embed de posts do Instagram e o Google Analytics (pronto para quando
     # o ID for ativado em src/config.ts — ver gaMeasurementId).
     Content-Security-Policy = "default-src 'self'; script-src 'self' https://www.instagram.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.analytics.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://cdn.sanity.io https://lh3.googleusercontent.com https://*.cdninstagram.com https://*.fbcdn.net; frame-src https://www.instagram.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
+
+# Redireciona o subdomínio temporário do Netlify para o domínio próprio,
+# evitando conteúdo duplicado (a mesma página acessível por duas URLs).
+[[redirects]]
+  from = "https://psicobeaviana.netlify.app/*"
+  to = "https://psicobeatrizviana.com.br/:splat"
+  status = 301
+  force = true
