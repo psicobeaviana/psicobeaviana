@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { phoneDisplay, email, instagramUrl } from '../config';
 
 interface Props {
   title?: string;
@@ -10,11 +11,32 @@ interface Props {
 const {
   title = 'Psicóloga Beatriz Viana | Psicologia Clínica e Neuropsicologia',
   description = 'Um espaço seguro e acolhedor para você explorar suas emoções, compreender sua história e construir caminhos mais saudáveis para sua vida.',
-  image = '/images/og-default.jpg',
+  image = '/images/og-share.jpg',
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL(image, Astro.site);
+
+// Dados estruturados (Schema.org) — ajuda o Google a entender que é um
+// negócio local de psicologia em Sorocaba, podendo exibir telefone/contato
+// direto nos resultados de busca.
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Psychologist',
+  name: 'Psicóloga Beatriz Viana',
+  image: ogImage.href,
+  url: Astro.site?.href,
+  telephone: `+55${phoneDisplay.replace(/\D/g, '')}`,
+  email,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Sorocaba',
+    addressRegion: 'SP',
+    addressCountry: 'BR',
+  },
+  areaServed: 'Sorocaba, SP',
+  sameAs: [instagramUrl],
+};
 ---
 
 <!doctype html>
@@ -45,6 +67,10 @@ const ogImage = new URL(image, Astro.site);
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- Dados estruturados: ajuda buscadores a reconhecer o negócio local -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
     <!-- Google Fonts: Playfair Display + Manrope + Dancing Script -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
