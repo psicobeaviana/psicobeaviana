@@ -16,3 +16,11 @@ export const email = 'psicologabeatrizgomes@gmail.com';
 
 /** Perfil do Instagram. */
 export const instagramUrl = 'https://www.instagram.com/psicobeatrizviana/';
+
+/**
+ * ID de Medição do Google Analytics (formato "G-XXXXXXXXXX").
+ * Deixe vazio para manter o Analytics desligado — o site funciona
+ * normalmente sem ele. Assim que a conta do GA4 for criada, cole o ID aqui
+ * e o script é carregado automaticamente.
+ */
+export const gaMeasurementId = '';
